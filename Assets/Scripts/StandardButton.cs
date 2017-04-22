@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ButtonAction
 {
-    Velocity, Rotation, StopVelocity, StopRotation
+    Velocity, Rotation, StopVelocity, StopRotation,SelectBotType, SpawnBot
 };
 public class StandardButton : MonoBehaviour {
 
@@ -21,6 +21,10 @@ public class StandardButton : MonoBehaviour {
     private float rotationChangeStopIncrement = 0.001F;
     private float speedChangeStopIncrement = 0.01F;
     ShipMovement shipMovement;
+    public BotType bt;
+    public bool IsToggle;
+    public GameObject[] OtherButtons;
+    public GameObject BotSelector;
 
 
 	void Start ()
@@ -30,50 +34,75 @@ public class StandardButton : MonoBehaviour {
         gameObjMesh.material = ButtonOffMat;
         buttonOn = false;
         ButtonPressed = false;
-		
 	}
 
 	void Update ()
     {
-        if (ButtonPressed)
+        if (!IsToggle)
         {
-            ButtonPressed = false;
-            buttonOn = true;
-            gameObjMesh.material = ButtonOnMat;
-            buttonOffTimer = buttonOffTimerSet;
-            switch (buttonAction)
+            if (ButtonPressed)
             {
-                case (ButtonAction.Velocity):
-                    ChangeVelocity(true);
-                    break;
-                case (ButtonAction.StopVelocity):
-                    ChangeVelocity(false);
-                    break;
-                case (ButtonAction.Rotation):
-                    ChangeRotation(true);
-                    break;
-                case (ButtonAction.StopRotation):
-                    ChangeRotation(false);
-                    break;
-            }
+                ButtonPressed = false;
+                buttonOn = true;
+                gameObjMesh.material = ButtonOnMat;
+                buttonOffTimer = buttonOffTimerSet;
+                switch (buttonAction)
+                {
+                    case (ButtonAction.Velocity):
+                        ChangeVelocity(true);
+                        break;
+                    case (ButtonAction.StopVelocity):
+                        ChangeVelocity(false);
+                        break;
+                    case (ButtonAction.Rotation):
+                        ChangeRotation(true);
+                        break;
+                    case (ButtonAction.StopRotation):
+                        ChangeRotation(false);
+                        break;
+                    case (ButtonAction.SelectBotType):
 
+                        break;
+                }
+
+            }
+            else
+            {
+                if (buttonOffTimer >= 0)
+                {
+                    buttonOffTimer -= Time.deltaTime;
+                }
+                if (buttonOffTimer <= 0)
+                {
+                    TurnButtonOff();
+                }
+            }
         }
         else
         {
-            if(buttonOffTimer >= 0)
-            {
-                buttonOffTimer -= Time.deltaTime;
-            }
-            if(buttonOffTimer <= 0)
-            {
-                TurnButtonOff();
-            }
+            if (ButtonPressed)
+
+                ButtonPressed = false;
+                buttonOn = true;
+                gameObjMesh.material = ButtonOnMat;
+                switch (buttonAction)
+                {
+                case (ButtonAction.SelectBotType):
+                    ButtonSel
+                    foreach (var btn in OtherButtons)
+                    {
+                        btn.GetComponent<StandardButton>().TurnButtonOff();
+                    }
+                    break;
+
+                 }
         }
+        
 
 	}
 
 
-    void TurnButtonOff()
+    public void TurnButtonOff()
     {
         if (buttonOn)
         {
