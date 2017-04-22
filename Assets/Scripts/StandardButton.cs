@@ -24,13 +24,14 @@ public class StandardButton : MonoBehaviour {
     public BotType bt;
     public bool IsToggle;
     public GameObject[] OtherButtons;
-    public GameObject BotSelector;
+    BotSelector botSelector;
 
 
 	void Start ()
     {
         gameObjMesh = GetComponent<MeshRenderer>();
         shipMovement = FindObjectOfType<ShipMovement>();
+        botSelector = FindObjectOfType<BotSelector>();
         gameObjMesh.material = ButtonOffMat;
         buttonOn = false;
         ButtonPressed = false;
@@ -88,13 +89,12 @@ public class StandardButton : MonoBehaviour {
                 switch (buttonAction)
                 {
                 case (ButtonAction.SelectBotType):
-                    ButtonSel
+                    botSelector.bt = bt;
                     foreach (var btn in OtherButtons)
                     {
                         btn.GetComponent<StandardButton>().TurnButtonOff();
                     }
                     break;
-
                  }
         }
         
