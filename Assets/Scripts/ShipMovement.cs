@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ShipMovement : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public float Speed;
+
+	void Start ()
+    {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        transform.Translate(Vector3.right * Speed);
 	}
 }
