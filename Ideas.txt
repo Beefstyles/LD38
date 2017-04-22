@@ -5,3 +5,7 @@ On a small planet and have to shoot around the back to hit other players/yoursel
 Teleport around the place - makes it a small world
 Exploring a small planet --> on a ship above the clouds. Go down to explore and find objects
 
+Actual Game Idea:
+Explore a small planet from your dropship. You move around a grid based game and send down mining/exploration/archaelogy bots.
+
+

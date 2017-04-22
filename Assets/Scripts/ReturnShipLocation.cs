@@ -6,10 +6,12 @@ public class ReturnShipLocation : MonoBehaviour {
 
     [HideInInspector]
     public string GridLocation;
+    ShipInformation shipInformation;
 
     void Start()
     {
         GridLocation = gameObject.name;
+        shipInformation = FindObjectOfType<ShipInformation>();
     }
 
     void OnTriggerEnter(Collider coll)
@@ -17,6 +19,7 @@ public class ReturnShipLocation : MonoBehaviour {
         if(coll.tag == "Ship")
         {
             Debug.Log("You have entered " + GridLocation);
+            shipInformation.SetGridLocation(GridLocation);
         }
     }
 
