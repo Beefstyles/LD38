@@ -20,18 +20,22 @@ public class FPSPlayerButtonPress : MonoBehaviour {
     {
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, 100F))
         {
-            if (Input.GetButton("Fire1") && hit.transform.gameObject.tag=="Clickable")
+            if (hit.transform.gameObject.tag == "Clickable")
             {
                 sb = hit.transform.gameObject.GetComponent<StandardButton>();
-                sb.ButtonPressed = true;
-                //Cursor.sprite = CursorClickable;
+                if (Input.GetButton("Fire1"))
+                {
+                    sb.GoForward = true;
+                    sb.ButtonPressed = true;
+                    //Cursor.sprite = CursorClickable;
+                }
+                if (Input.GetButton("Fire2"))
+                {
+                    sb.GoForward = false;
+                    sb.ButtonPressed = true;
+                    //Cursor.sprite = CursorClickable;
+                }
             }
         }
-        else
-        {
-            Debug.Log("Not clickable");
-            //Cursor.sprite = CursorNonClickable;
-        }
-        
     }
 }

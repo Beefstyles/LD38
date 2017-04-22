@@ -5,14 +5,11 @@ using UnityEngine;
 public class ShipMovement : MonoBehaviour {
 
     public float Speed;
+    public float MaxSpeed;
 
-	void Start ()
-    {
-		
-	}
 	
 	void Update ()
     {
-        transform.Translate(Vector3.right * Speed);
+        transform.Translate(Vector3.forward * Speed);
 	}
 }
