@@ -17,6 +17,8 @@ public class StandardButton : MonoBehaviour {
     private float buttonOffTimer;
     private float buttonOffTimerSet = 0.2F;
     private float speedChangeIncrement = 0.005F;
+    private float rotationChangeIncrement = 0.0005F;
+    private float rotationChangeStopIncrement = 0.001F;
     private float speedChangeStopIncrement = 0.01F;
     ShipMovement shipMovement;
 
@@ -46,6 +48,12 @@ public class StandardButton : MonoBehaviour {
                     break;
                 case (ButtonAction.StopVelocity):
                     ChangeVelocity(false);
+                    break;
+                case (ButtonAction.Rotation):
+                    ChangeRotation(true);
+                    break;
+                case (ButtonAction.StopRotation):
+                    ChangeRotation(false);
                     break;
             }
 
@@ -81,7 +89,7 @@ public class StandardButton : MonoBehaviour {
         {
             if (moveShip)
             {
-                if (shipMovement.Speed <= shipMovement.MaxSpeed)
+                if (Mathf.Abs(shipMovement.Speed) <= Mathf.Abs(shipMovement.MaxSpeed))
                 {
                     if (GoForward)
                     {
@@ -110,11 +118,46 @@ public class StandardButton : MonoBehaviour {
                 
                 
             }
-            
-            
         }
-        
     }
 
- 
+    void ChangeRotation(bool rotateShip)
+    {
+        if (buttonOn)
+        {
+            if (rotateShip)
+            {
+                if (Mathf.Abs(shipMovement.RotationSpeed) <= Mathf.Abs(shipMovement.MaxRotationSpeed))
+                {
+                    if (GoForward)
+                    {
+                        shipMovement.RotationSpeed += rotationChangeIncrement;
+                    }
+                    else
+                    {
+                        shipMovement.RotationSpeed -= rotationChangeIncrement;
+                    }
+                }
+            }
+            else
+            {
+                if (shipMovement.RotationSpeed < 0.1F && shipMovement.RotationSpeed > -0.1F)
+                {
+                    shipMovement.RotationSpeed = 0F;
+                }
+                if (shipMovement.RotationSpeed > 0F)
+                {
+                    shipMovement.RotationSpeed -= rotationChangeStopIncrement;
+                }
+                else if (shipMovement.Speed < 0F)
+                {
+                    shipMovement.RotationSpeed += rotationChangeStopIncrement;
+                }
+
+
+            }
+        }
+    }
+
+
 }

@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class ReturnShipLocation : MonoBehaviour {
 
+    [HideInInspector]
     public string GridLocation;
+
+    void Start()
+    {
+        GridLocation = gameObject.name;
+    }
 
     void OnTriggerEnter(Collider coll)
     {
