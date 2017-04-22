@@ -9,6 +9,9 @@ public class StandardButton : MonoBehaviour {
     private bool buttonOn;
     private MeshRenderer gameObjMesh;
     public bool GoForward;
+    private float buttonOffTimer;
+    private float buttonOffTimerSet = 0.2F;
+
 
 	void Start ()
     {
@@ -24,17 +27,34 @@ public class StandardButton : MonoBehaviour {
         if (ButtonPressed)
         {
             ButtonPressed = false;
-            if (buttonOn)
+            buttonOn = true;
+            gameObjMesh.material = ButtonOnMat;
+            buttonOffTimer = buttonOffTimerSet;
+        }
+        else
+        {
+            if(buttonOffTimer >= 0)
             {
-                gameObjMesh.material = ButtonOffMat;
-                buttonOn = false;
+                buttonOffTimer -= Time.deltaTime;
             }
-
-            else
+            if(buttonOffTimer <= 0)
             {
-                gameObjMesh.material = ButtonOnMat;
-                buttonOn = true;
+                TurnButtonOff();
             }
         }
+
 	}
+
+
+    void TurnButtonOff()
+    {
+        if (buttonOn)
+        {
+            buttonOn = false;
+            gameObjMesh.material = ButtonOffMat;
+            ButtonPressed = false;
+        }
+    }
+
+ 
 }
