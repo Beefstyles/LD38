@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum BotType
+{
+    MiningBot, ArchBot, ExplorBot
+};
+
+public enum BotStatus
+{
+    TravellingToSurface, Mining, Exploring, Prospecting, ReturningToAtmosphere, WaitingForPickup
+};
 public class BotHandlerText
 {
     public Text NumberMiningBotsTotalText, NumberMiningBotsActiveText, NumberMiningBotsPickupReqText, NumberExplorationBotsTotalText, NumberExplorationBotsActiveText, NumberExplorationBotsPickupReqText;
