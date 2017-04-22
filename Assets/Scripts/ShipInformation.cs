@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShipInformation : MonoBehaviour {
 
+    [HideInInspector]
     public string GridLocation;
 	// Use this for initialization
 	void Start () {
