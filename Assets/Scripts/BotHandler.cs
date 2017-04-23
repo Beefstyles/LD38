@@ -43,6 +43,7 @@ public class BotHandler : MonoBehaviour {
     {
         ShipInfo = FindObjectOfType<ShipInformation>();
         messageHandler = FindObjectOfType<MessageHandler>();
+        resourceInfo = FindObjectOfType<ResourceInformation>();
     }
     public void SpawnBot(BotType bt)
     {
@@ -133,6 +134,8 @@ public class BotHandler : MonoBehaviour {
         switch (botType)
         {
             case BotType.MiningBot:
+                NoMiningBotsTotal++;
+                NoMiningBotsActive--;
                 int miningReturn;
                 message = "Mining Bot Returned from : " + botLocation + " with: ";
                 MiningBotReturn.TryGetValue("Iron", out miningReturn);
@@ -153,8 +156,12 @@ public class BotHandler : MonoBehaviour {
                 messageHandler.ReceiveMessage(message);
                 break;
             case BotType.ArchBot:
+                NoArchBotsTotal++;
+                NoArchBotsActive--;
                 break;
             case BotType.ExplorBot:
+                NoExplorationBotsTotal++;
+                NoExplorationBotsActive--;
                 float explorerReturn;
                 ExploreBotReturn.TryGetValue("Iron", out explorerReturn);
                 message = "Explorer Bot Returned from " + botLocation + " with: " + explorerReturn + "% chance Iron, ";

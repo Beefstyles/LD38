@@ -48,7 +48,7 @@ public class Bot : MonoBehaviour {
 
 	void Update ()
     {
-        if(BotStatus != BotStatus.WaitingForPickup)
+        if(BotStatus != BotStatus.WaitingForPickup || BotStatus != BotStatus.ReturnedToShip)
         {
             Timer += Time.deltaTime;
         }
@@ -107,6 +107,18 @@ public class Bot : MonoBehaviour {
                 }
                 break;
             case (BotStatus.WaitingForPickup):
+                switch (BotType)
+                {
+                    case BotType.MiningBot:
+                        botHandler.NoMiningBotsPickupReq++;
+                        break;
+                    case BotType.ArchBot:
+                        botHandler.NoArchBotsPickupReq++;
+                        break;
+                    case BotType.ExplorBot:
+                        botHandler.NoExplorationBotsPickupReq++;
+                        break;
+                }
                 if(BotLocation == shipInfo.GridLocation)
                 {
                     BotStatus = BotStatus.ReturnedToShip;
@@ -114,6 +126,7 @@ public class Bot : MonoBehaviour {
                     switch (BotType)
                     {
                         case BotType.MiningBot:
+                            botHandler.NoMiningBotsPickupReq--;
                             randomNumber = returnRandomNumber();
 
                             if(randomNumber <= (ExploreBotResourceReturn["Iron"] / 10))
@@ -175,6 +188,20 @@ public class Bot : MonoBehaviour {
                             break;
                     }
                     botHandler.BotReturned(BotType, MiningBotResourceReturn, ExploreBotResourceReturn, NumberOfArtifact, BotLocation);
+                }
+                break;
+            case BotStatus.ReturnedToShip:
+                switch (BotType)
+                {
+                    case BotType.MiningBot:
+                        botHandler.NoMiningBotsPickupReq--;
+                        break;
+                    case BotType.ArchBot:
+                        botHandler.NoArchBotsPickupReq--;
+                        break;
+                    case BotType.ExplorBot:
+                        botHandler.NoExplorationBotsPickupReq--;
+                        break;
                 }
                 break;
         }
