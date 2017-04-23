@@ -34,6 +34,7 @@ public class BotHandler : MonoBehaviour {
     ResourceInformation resourceInfo;
     public bool SpawnSuccessful;
     private int currentBotNumber = 1;
+    MessageHandler messageHandler;
 
     public GameObject MiningBot, ExplorBot, ArchBot;
 
@@ -92,7 +93,18 @@ public class BotHandler : MonoBehaviour {
         switch (botType)
         {
             case BotType.MiningBot:
-                
+                int miningReturn;
+                MiningBotReturn.TryGetValue("Iron", out miningReturn);
+                resourceInfo.TotalIron += miningReturn;
+                MiningBotReturn.TryGetValue("Gold", out miningReturn);
+                resourceInfo.TotalGold += miningReturn;
+                MiningBotReturn.TryGetValue("Platinum", out miningReturn);
+                resourceInfo.TotalPlatinum += miningReturn;
+                MiningBotReturn.TryGetValue("Carbon", out miningReturn);
+                resourceInfo.TotalCarbon += miningReturn;
+                MiningBotReturn.TryGetValue("Helium3", out miningReturn);
+                resourceInfo.HeliumRemaining += miningReturn;
+                messageHandler
                 break;
             case BotType.ArchBot:
                 break;

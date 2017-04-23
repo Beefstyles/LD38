@@ -7,19 +7,15 @@ public class ResourceInformation : MonoBehaviour {
 
     public int TotalIron, TotalGold, TotalPlatinum, TotalCarbon, NumberArtifacts;
     public float HeliumRemaining, HeliumMax;
-    public TextMeshPro IronText, GoldText, PlatinumText, CarbonText, HeliumText;
+    public TextMeshPro IronText, GoldText, PlatinumText, CarbonText, HeliumText, ArtifactText;
     
-    
-    void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
-
-    public void ReceiveDictionaries()
+    void Update()
     {
-
+        IronText.text = TotalIron.ToString();
+        GoldText.text = TotalGold.ToString();
+        PlatinumText.text = TotalPlatinum.ToString();
+        CarbonText.text = TotalCarbon.ToString();
+        HeliumText.text = HeliumRemaining.ToString();
+        ArtifactText.text = NumberArtifacts.ToString();
     }
 }
