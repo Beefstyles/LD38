@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ButtonAction
 {
-    Velocity, Rotation, StopVelocity, StopRotation,SelectBotType, SpawnBot
+    Velocity, Rotation, StopVelocity, StopRotation,SelectBotType, SpawnBot, BuyObject
 };
 public class StandardButton : MonoBehaviour {
 

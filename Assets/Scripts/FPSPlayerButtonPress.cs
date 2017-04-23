@@ -10,6 +10,7 @@ public class FPSPlayerButtonPress : MonoBehaviour {
     private Camera fpsCamera;
     StandardButton sb;
     BotSelectorButtons BotSelectorButton;
+    BuyingButton BuyingOptionButton;
     public Sprite CursorNonClickable, CursorClickable;
     public Image Cursor;
 
@@ -25,6 +26,7 @@ public class FPSPlayerButtonPress : MonoBehaviour {
             {
                 sb = hit.transform.gameObject.GetComponent<StandardButton>();
                 BotSelectorButton = hit.transform.GetComponent<BotSelectorButtons>();
+                BuyingOptionButton = hit.transform.gameObject.GetComponent<BuyingButton>();
                 if (Input.GetButton("Fire1"))
                 {
                     if(sb != null)
@@ -49,6 +51,10 @@ public class FPSPlayerButtonPress : MonoBehaviour {
                     if (BotSelectorButton != null)
                     {
                         BotSelectorButton.ButtonPressed = true;
+                    }
+                    if(BuyingOptionButton != null)
+                    {
+                        BuyingOptionButton.ButtonPressed = true;
                     }
                 }
             }
