@@ -21,17 +21,19 @@ public class StandardButton : MonoBehaviour {
     private float rotationChangeStopIncrement = 0.001F;
     private float speedChangeStopIncrement = 0.01F;
     ShipMovement shipMovement;
-    public BotType bt;
+    public BotType botType;
     public bool IsToggle;
     public GameObject[] OtherButtons;
     BotSelector botSelector;
+    BotHandler botHandler;
 
 
-	void Start ()
+    void Start ()
     {
         gameObjMesh = GetComponent<MeshRenderer>();
         shipMovement = FindObjectOfType<ShipMovement>();
         botSelector = FindObjectOfType<BotSelector>();
+        botHandler = FindObjectOfType<BotHandler>();
         gameObjMesh.material = ButtonOffMat;
         buttonOn = false;
         ButtonPressed = false;
@@ -60,10 +62,7 @@ public class StandardButton : MonoBehaviour {
                         break;
                     case (ButtonAction.StopRotation):
                         ChangeRotation(false);
-                        break;
-                    case (ButtonAction.SelectBotType):
-
-                        break;
+                        break; 
                 }
 
             }
@@ -82,20 +81,23 @@ public class StandardButton : MonoBehaviour {
         else
         {
             if (ButtonPressed)
-
+                Debug.Log("Tggle");
                 ButtonPressed = false;
                 buttonOn = true;
                 gameObjMesh.material = ButtonOnMat;
                 switch (buttonAction)
                 {
                 case (ButtonAction.SelectBotType):
-                    botSelector.bt = bt;
+                    botSelector.bt = botType;
                     foreach (var btn in OtherButtons)
                     {
                         btn.GetComponent<StandardButton>().TurnButtonOff();
                     }
                     break;
-                 }
+                case (ButtonAction.SpawnBot):
+                    botHandler.SpawnBot(botType);
+                    break;
+            }
         }
         
 
@@ -172,7 +174,7 @@ public class StandardButton : MonoBehaviour {
             }
             else
             {
-                if (shipMovement.RotationSpeed < 0.1F && shipMovement.RotationSpeed > -0.1F)
+                if (shipMovement.RotationSpeed < 0.01F && shipMovement.RotationSpeed > -0.01F)
                 {
                     shipMovement.RotationSpeed = 0F;
                 }

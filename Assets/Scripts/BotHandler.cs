@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public enum BotType
 {
@@ -12,16 +13,13 @@ public enum BotStatus
 {
     TravellingToSurface, BotAction, ReturningToAtmosphere, WaitingForPickup
 };
-public class BotHandlerText
-{
-    public Text NumberMiningBotsTotalText, NumberMiningBotsActiveText, NumberMiningBotsPickupReqText, NumberExplorationBotsTotalText, NumberExplorationBotsActiveText, NumberExplorationBotsPickupReqText;
-    public Text NumberArchBotsTotalText, NumberArchBotsActiveText, NumberArchBotsPickupReqText;
-}
 public class BotHandler : MonoBehaviour {
 
+    public TextMeshPro NumberMiningBotsTotalText, NumberMiningBotsActiveText, NumberMiningBotsPickupReqText, NumberExplorationBotsTotalText, NumberExplorationBotsActiveText, NumberExplorationBotsPickupReqText;
+    public TextMeshPro NumberArchBotsTotalText, NumberArchBotsActiveText, NumberArchBotsPickupReqText;
 
-    public int NumberMiningBotsTotal;
-    public int NumberMiningBotsActive;
+    public int NoMiningBotsTotal;
+    public int NoMiningBotsActive;
     public int NumberMiningBotsPickupReq;
     public int NumberExplorationBotsTotal;
     public int NumberExplorationBotsActive;
@@ -40,22 +38,26 @@ public class BotHandler : MonoBehaviour {
         switch (bt)
         {
             case (BotType.MiningBot):
-                if(NumberMiningBotsTotal > 1)
+                if(NoMiningBotsTotal > 1)
                 {
-                    NumberMiningBotsTotal--;
+                    NoMiningBotsTotal--;
+                    NoMiningBotsActive++;
                     instantiatedBot = Instantiate(MiningBot, BotSpawnLocation) as GameObject;
                     instantiatedBot.GetComponent<Bot>().BotNumber = 1;
                 }
                 break;
         }
     }
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    void Update()
+    {
+        HandleTextUpdate();
+    }
+
+    void HandleTextUpdate()
+    {
+        NumberMiningBotsTotalText.text = NoMiningBotsTotal.ToString();
+        NumberMiningBotsActiveText.text = NoMiningBotsActive.ToString();
+        NumberMiningBotsPickupReqText.text = NumberMiningBotsPickupReq.ToString();
+    }
 }
