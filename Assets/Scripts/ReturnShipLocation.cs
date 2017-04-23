@@ -30,7 +30,7 @@ public class ReturnShipLocation : MonoBehaviour {
     {
         if (coll.tag == "Ship")
         {
-            Debug.Log("You have exited " + GridLocation);
+            //Debug.Log("You have exited " + GridLocation);
             lgControl.UpdateGridPosition(GridLocation, false);
         }
     }
