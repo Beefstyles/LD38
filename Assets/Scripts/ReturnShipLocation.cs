@@ -8,6 +8,7 @@ public class ReturnShipLocation : MonoBehaviour {
     public string GridLocation;
     ShipInformation shipInformation;
     LightUpGridControl lgControl;
+    public float ChanceOfIron, ChanceOfGold, ChanceOfPlatinum, ChanceOfCarbon, ChanceOfHelium3, ChanceOfArtifact;
 
     void Start()
     {

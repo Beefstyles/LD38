@@ -8,4 +8,5 @@ Exploring a small planet --> on a ship above the clouds. Go down to explore and 
 Actual Game Idea:
 Explore a small planet from your dropship. You move around a grid based game and send down mining/exploration/archaelogy bots.
 Elements:
-Iron, Gold, Platinum and Helium
+Iron, Gold, Platinum, Carbon and Helium-3.
+Find 4 artifacts to win.

@@ -36,7 +36,6 @@ public class BotHandler : MonoBehaviour {
 
     public GameObject MiningBot, ExplorBot, ArchBot;
 
-
     void Start()
     {
         ShipInfo = FindObjectOfType<ShipInformation>();
@@ -50,7 +49,7 @@ public class BotHandler : MonoBehaviour {
                 {
                     NoMiningBotsTotal--;
                     NoMiningBotsActive++;
-                    instantiatedBot = Instantiate(MiningBot,BotSpawnLocation) as GameObject;
+                    instantiatedBot = Instantiate(MiningBot, transform.position, transform.rotation) as GameObject;
                     currentBot = instantiatedBot.GetComponent<Bot>();
                     currentBot.BotNumber = currentBotNumber;
                     currentBotNumber++;
