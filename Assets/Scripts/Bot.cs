@@ -21,7 +21,7 @@ public class Bot : MonoBehaviour {
     public int NumberOfArtifact;
     ResourceInformation resourceInfo;
     int randomNumber;
-    public int IronReturn, GoldReturn, PlatinumReturn, CarbonReturn, HeliumReturn;
+    public int IronReturn, GoldReturn, PlatinumReturn, CarbonReturn, HeliumReturn, ArtifactReturn;
 
 	void Start () {
         MiningBotResourceReturn.Add("Iron", 0);
@@ -109,7 +109,7 @@ public class Bot : MonoBehaviour {
                 if(BotLocation == shipInfo.GridLocation)
                 {
                     BotStatus = BotStatus.ReturnedToShip;
-                    ExploreBotResourceReturn = resourceInfo.GridRefChanceOfReturn["BotLocation"];
+                    ExploreBotResourceReturn = resourceInfo.GridRefChanceOfReturn[BotLocation];
                     switch (BotType)
                     {
                         case BotType.MiningBot:
@@ -161,8 +161,14 @@ public class Bot : MonoBehaviour {
                             }
                             break;
                         case BotType.ArchBot:
+                            randomNumber = returnRandomNumber();
+                            if (randomNumber <= (ExploreBotResourceReturn["Artifact"] / 10))
+                            {
+                                NumberOfArtifact = ArtifactReturn;
+                            }
                             break;
                         case BotType.ExplorBot:
+                            //Shouldn't need to do anything
                             break;
                         default:
                             break;

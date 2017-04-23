@@ -22,13 +22,13 @@ public class BotHandler : MonoBehaviour {
     ShipInformation ShipInfo;
     public int NoMiningBotsTotal;
     public int NoMiningBotsActive;
-    public int NumberMiningBotsPickupReq;
-    public int NumberExplorationBotsTotal;
-    public int NumberExplorationBotsActive;
-    public int NumberExplorationBotsPickupReq;
-    public int NumberArchBotsTotal;
-    public int NumberArchBotsActive;
-    public int NumberArchBotsPickupReq;
+    public int NoMiningBotsPickupReq;
+    public int NoExplorationBotsTotal;
+    public int NoExplorationBotsActive;
+    public int NoExplorationBotsPickupReq;
+    public int NoArchBotsTotal;
+    public int NoArchBotsActive;
+    public int NoArchBotsPickupReq;
     private GameObject instantiatedBot;
     public Transform BotSpawnLocation;
     ResourceInformation resourceInfo;
@@ -66,6 +66,44 @@ public class BotHandler : MonoBehaviour {
                     SpawnSuccessful = false;
                 }
                 break;
+            case (BotType.ArchBot):
+                if (NoArchBotsTotal >= 1)
+                {
+                    NoArchBotsTotal--;
+                    NoArchBotsActive++;
+                    instantiatedBot = Instantiate(ArchBot, transform.position, transform.rotation) as GameObject;
+                    currentBot = instantiatedBot.GetComponent<Bot>();
+                    currentBot.BotNumber = currentBotNumber;
+                    currentBotNumber++;
+                    currentBot.BotLocation = ShipInfo.GridLocation;
+                    SpawnSuccessful = true;
+                    Debug.Log("Successfully spawned a arch bot");
+                }
+                else
+                {
+                    Debug.Log("Failed spawned a arch bot");
+                    SpawnSuccessful = false;
+                }
+                break;
+            case (BotType.ExplorBot):
+                if (NoExplorationBotsTotal >= 1)
+                {
+                    NoExplorationBotsTotal--;
+                    NoExplorationBotsActive++;
+                    instantiatedBot = Instantiate(ExplorBot, transform.position, transform.rotation) as GameObject;
+                    currentBot = instantiatedBot.GetComponent<Bot>();
+                    currentBot.BotNumber = currentBotNumber;
+                    currentBotNumber++;
+                    currentBot.BotLocation = ShipInfo.GridLocation;
+                    SpawnSuccessful = true;
+                    Debug.Log("Successfully spawned a explorer bot");
+                }
+                else
+                {
+                    Debug.Log("Failed spawned a explorer bot");
+                    SpawnSuccessful = false;
+                }
+                break;
         }
     }
 
@@ -78,15 +116,15 @@ public class BotHandler : MonoBehaviour {
     {
         NumberMiningBotsTotalText.text = NoMiningBotsTotal.ToString();
         NumberMiningBotsActiveText.text = NoMiningBotsActive.ToString();
-        NumberMiningBotsPickupReqText.text = NumberMiningBotsPickupReq.ToString();
+        NumberMiningBotsPickupReqText.text = NoMiningBotsPickupReq.ToString();
 
-        NumberExplorationBotsTotalText.text = NumberExplorationBotsTotal.ToString();
-        NumberExplorationBotsActiveText.text = NumberExplorationBotsActive.ToString();
-        NumberExplorationBotsPickupReqText.text = NumberExplorationBotsPickupReq.ToString();
+        NumberExplorationBotsTotalText.text = NoExplorationBotsTotal.ToString();
+        NumberExplorationBotsActiveText.text = NoExplorationBotsActive.ToString();
+        NumberExplorationBotsPickupReqText.text = NoExplorationBotsPickupReq.ToString();
 
-        NumberArchBotsTotalText.text = NumberArchBotsTotal.ToString();
-        NumberArchBotsActiveText.text = NumberArchBotsActive.ToString();
-        NumberArchBotsPickupReqText.text = NumberArchBotsPickupReq.ToString();
+        NumberArchBotsTotalText.text = NoArchBotsTotal.ToString();
+        NumberArchBotsActiveText.text = NoArchBotsActive.ToString();
+        NumberArchBotsPickupReqText.text = NoArchBotsPickupReq.ToString();
     }
 
     public void BotReturned(BotType botType, Dictionary<string, int> MiningBotReturn, Dictionary<string, float> ExploreBotReturn, int NumberOfArtifact, string botLocation)

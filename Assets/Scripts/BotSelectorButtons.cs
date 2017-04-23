@@ -18,6 +18,7 @@ public class BotSelectorButtons : MonoBehaviour {
     private bool spawnSuccessful;
     private float buttonOffTimer;
     private float buttonOffTimerSet = 0.2F;
+    public BotSelectorButtons SpawnBotButton;
 
     void Start ()
     {
@@ -64,7 +65,7 @@ public class BotSelectorButtons : MonoBehaviour {
                 switch (buttonAction)
                 {
                     case (ButtonAction.SpawnBot):
-                        botHandler.SpawnBot(botType);
+                        botHandler.SpawnBot(botSelector.bt);
                         spawnSuccessful = botHandler.SpawnSuccessful;
                         break;
                 }
