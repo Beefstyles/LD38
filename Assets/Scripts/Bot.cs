@@ -14,12 +14,21 @@ public class Bot : MonoBehaviour {
     public string BotLocation;
     private string statusText;
     BotHandler botHandler;
+    public float timeRemaining;
+    ShipInformation shipInfo;
+    public int AmountOfIron, AmountOfGold, AmountOfPlatinum, AmountOfCarbon, AmountOfHelium, NumberOfArtifact;
 
 	void Start () {
         Timer = 0;
         botHandler = FindObjectOfType<BotHandler>();
+        shipInfo = FindObjectOfType<ShipInformation>();
         BotStatus = BotStatus.TravellingToSurface;
-	}
+        timeRemaining = TimeToSurface - Timer;
+        if(BotLocation == shipInfo.GridLocation)
+        {
+            Debug.Log("Test?");
+        }
+    }
 	
 
 	void Update ()
@@ -27,9 +36,9 @@ public class Bot : MonoBehaviour {
         if(BotStatus != BotStatus.WaitingForPickup)
         {
             Timer += Time.deltaTime;
-            UpdateStatus();
         }
-        statusText = BotNumber + " " + BotType + " " + BotStatus + " " + BotLocation + " " + Math.Round(Timer, 2).ToString();
+        UpdateStatus();
+        statusText = BotNumber + " " + BotType + " " + BotStatus + " " + BotLocation + " " + Math.Round(timeRemaining, 2).ToString();
         switch (BotNumber)
         {
             case (1):
@@ -58,21 +67,35 @@ public class Bot : MonoBehaviour {
         switch (BotStatus)
         {
             case (BotStatus.TravellingToSurface):
+                timeRemaining = TimeToSurface - Timer;
                 if (Timer >= TimeToSurface)
                 {
+                    Timer = 0;
                     BotStatus = BotStatus.BotAction;
                 }
                 break;
             case (BotStatus.BotAction):
+                timeRemaining = TimeForAction - Timer;
                 if (Timer >= TimeForAction)
                 {
+                    Timer = 0;
                     BotStatus = BotStatus.ReturningToAtmosphere;
                 }
                 break;
             case (BotStatus.ReturningToAtmosphere):
+                timeRemaining = TimeToReturn - Timer;
                 if (Timer >= TimeToReturn)
                 {
+                    timeRemaining = 0F;
+                    Timer = 0;
                     BotStatus = BotStatus.WaitingForPickup;
+                }
+                break;
+            case (BotStatus.WaitingForPickup):
+                if(BotLocation == shipInfo.GridLocation)
+                {
+                    BotStatus = BotStatus.ReturnedToShip;
+
                 }
                 break;
         }

@@ -11,7 +11,7 @@ public enum BotType
 
 public enum BotStatus
 {
-    TravellingToSurface, BotAction, ReturningToAtmosphere, WaitingForPickup
+    TravellingToSurface, BotAction, ReturningToAtmosphere, WaitingForPickup, ReturnedToShip
 };
 public class BotHandler : MonoBehaviour {
 
