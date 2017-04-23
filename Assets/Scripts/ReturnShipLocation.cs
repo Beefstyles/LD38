@@ -35,4 +35,5 @@ public class ReturnShipLocation : MonoBehaviour {
             lgControl.UpdateGridPosition(GridLocation, false);
         }
     }
+
 }

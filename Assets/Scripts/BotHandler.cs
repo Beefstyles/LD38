@@ -95,7 +95,7 @@ public class BotHandler : MonoBehaviour {
         {
             case BotType.MiningBot:
                 int miningReturn;
-                message = "Mining Bot Returned: ";
+                message = "Mining Bot Returned from : " + botLocation + " with:";
                 MiningBotReturn.TryGetValue("Iron", out miningReturn);
                 resourceInfo.TotalIron += miningReturn;
                 message += "Iron: " + miningReturn + " ";
@@ -118,15 +118,16 @@ public class BotHandler : MonoBehaviour {
             case BotType.ExplorBot:
                 float explorerReturn;
                 ExploreBotReturn.TryGetValue("Iron", out explorerReturn);
-                message = "Explorer Bot Returned from " + botLocation + " :" + explorerReturn + "% chance Iron, ";
+                message = "Explorer Bot Returned from " + botLocation + " with:" + explorerReturn + "% chance Iron, ";
                 ExploreBotReturn.TryGetValue("Gold", out explorerReturn);
                 message += explorerReturn + "% chance Gold, ";
                 ExploreBotReturn.TryGetValue("Platinum", out explorerReturn);
                 message += explorerReturn + "% chance Platinum, ";
                 ExploreBotReturn.TryGetValue("Carbon", out explorerReturn);
                 message += explorerReturn + "% chance Carbon, ";
+                ExploreBotReturn.TryGetValue("Helium3", out explorerReturn);
+                message += explorerReturn + "% chance Helium3";
                 messageHandler.ReceiveMessage(message);
-                break;
                 break;
             default:
                 break;

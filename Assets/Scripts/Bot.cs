@@ -109,7 +109,7 @@ public class Bot : MonoBehaviour {
                 if(BotLocation == shipInfo.GridLocation)
                 {
                     BotStatus = BotStatus.ReturnedToShip;
-                    botHandler.BotReturned(BotType, MiningBotResourceReturn, ExploreBotResourceReturn, NumberOfArtifact);
+                    botHandler.BotReturned(BotType, MiningBotResourceReturn, ExploreBotResourceReturn, NumberOfArtifact, BotLocation);
                 }
                 break;
         }
