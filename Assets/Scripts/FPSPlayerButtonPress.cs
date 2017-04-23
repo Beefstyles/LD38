@@ -9,6 +9,7 @@ public class FPSPlayerButtonPress : MonoBehaviour {
     private RaycastHit hit;
     private Camera fpsCamera;
     StandardButton sb;
+    BotSelectorButtons BotSelectorButton;
     public Sprite CursorNonClickable, CursorClickable;
     public Image Cursor;
 
@@ -23,17 +24,33 @@ public class FPSPlayerButtonPress : MonoBehaviour {
             if (hit.transform.gameObject.tag == "Clickable")
             {
                 sb = hit.transform.gameObject.GetComponent<StandardButton>();
+                BotSelectorButton = hit.transform.GetComponent<BotSelectorButtons>();
                 if (Input.GetButton("Fire1"))
                 {
-                    sb.GoForward = true;
-                    sb.ButtonPressed = true;
-                    //Cursor.sprite = CursorClickable;
+                    if(sb != null)
+                    {
+                        sb.GoForward = true;
+                        sb.ButtonPressed = true;
+                        //Cursor.sprite = CursorClickable;
+                    }
+                    if(BotSelectorButton != null)
+                    {
+                        BotSelectorButton.ButtonPressed = true;
+                    }
+
                 }
                 if (Input.GetButton("Fire2"))
                 {
-                    sb.GoForward = false;
-                    sb.ButtonPressed = true;
-                    //Cursor.sprite = CursorClickable;
+                    if (sb != null)
+                    {
+                        sb.GoForward = false;
+                        sb.ButtonPressed = true;
+                        //Cursor.sprite = CursorClickable;
+                    }
+                    if (BotSelectorButton != null)
+                    {
+                        BotSelectorButton.ButtonPressed = true;
+                    }
                 }
             }
         }

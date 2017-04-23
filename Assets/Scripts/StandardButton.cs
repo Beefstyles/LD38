@@ -78,27 +78,6 @@ public class StandardButton : MonoBehaviour {
                 }
             }
         }
-        else
-        {
-            if (ButtonPressed)
-                Debug.Log("Tggle");
-                ButtonPressed = false;
-                buttonOn = true;
-                gameObjMesh.material = ButtonOnMat;
-                switch (buttonAction)
-                {
-                case (ButtonAction.SelectBotType):
-                    botSelector.bt = botType;
-                    foreach (var btn in OtherButtons)
-                    {
-                        btn.GetComponent<StandardButton>().TurnButtonOff();
-                    }
-                    break;
-                case (ButtonAction.SpawnBot):
-                    botHandler.SpawnBot(botType);
-                    break;
-            }
-        }
         
 
 	}

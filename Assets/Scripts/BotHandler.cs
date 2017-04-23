@@ -59,5 +59,13 @@ public class BotHandler : MonoBehaviour {
         NumberMiningBotsTotalText.text = NoMiningBotsTotal.ToString();
         NumberMiningBotsActiveText.text = NoMiningBotsActive.ToString();
         NumberMiningBotsPickupReqText.text = NumberMiningBotsPickupReq.ToString();
+
+        NumberExplorationBotsTotalText.text = NumberExplorationBotsTotal.ToString();
+        NumberExplorationBotsActiveText.text = NumberExplorationBotsActive.ToString();
+        NumberExplorationBotsPickupReqText.text = NumberExplorationBotsPickupReq.ToString();
+
+        NumberArchBotsTotalText.text = NumberArchBotsTotal.ToString();
+        NumberArchBotsActiveText.text = NumberArchBotsActive.ToString();
+        NumberArchBotsPickupReqText.text = NumberArchBotsPickupReq.ToString();
     }
 }
