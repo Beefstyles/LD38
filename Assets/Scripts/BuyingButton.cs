@@ -21,7 +21,6 @@ public class BuyingButton : MonoBehaviour {
 
     void Start()
     {
-
         gameObjMesh = GetComponent<MeshRenderer>();
         equipUpgradeHandler = FindObjectOfType<EquipmentUpgradeHandler>();
         gameObjMesh.material = ButtonOffMat;

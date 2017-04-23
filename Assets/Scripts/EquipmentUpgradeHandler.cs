@@ -57,6 +57,7 @@ public class EquipmentUpgradeHandler : MonoBehaviour {
                 if (resourceInfo.TotalIron >= PassiveH3IronCost && resourceInfo.TotalGold >= PassiveH3GoldCost && resourceInfo.TotalPlatinum >= PassiveH3PlatCost && resourceInfo.TotalCarbon >= PassiveH3CarbonCost)
                 {
                     resourceInfo.NumberPassiveH3Units++;
+                    SubtractFromResources(PassiveH3IronCost, PassiveH3GoldCost, PassiveH3PlatCost, PassiveH3CarbonCost);
                 }
                 else
                 {
@@ -67,6 +68,7 @@ public class EquipmentUpgradeHandler : MonoBehaviour {
                 if (resourceInfo.TotalIron >= NewMiningBotIronCost && resourceInfo.TotalGold >= NewMiningBotGoldCost && resourceInfo.TotalPlatinum >= NewMiningBotPlatCost && resourceInfo.TotalCarbon >= NewMiningBotCarbonCost)
                 {
                     botHandler.NoMiningBotsTotal++;
+                    SubtractFromResources(NewMiningBotIronCost, NewMiningBotGoldCost, NewMiningBotPlatCost, NewMiningBotCarbonCost);
                 }
                 else
                 {
@@ -77,6 +79,7 @@ public class EquipmentUpgradeHandler : MonoBehaviour {
                 if (resourceInfo.TotalIron >= NewArchIronCost && resourceInfo.TotalGold >= NewArchBotGoldCost && resourceInfo.TotalPlatinum >= NewArchBotPlatCost && resourceInfo.TotalCarbon >= NewArchBotCarbonCost)
                 {
                     botHandler.NoArchBotsTotal++;
+                    SubtractFromResources(NewArchIronCost, NewArchBotGoldCost, NewArchBotPlatCost, NewArchBotCarbonCost);
                 }
                 else
                 {
@@ -87,6 +90,7 @@ public class EquipmentUpgradeHandler : MonoBehaviour {
                 if (resourceInfo.TotalIron >= NewExplorBotIronCost && resourceInfo.TotalGold >= NewExplorBotGoldCost && resourceInfo.TotalPlatinum >= NewExplorBotPlatCost && resourceInfo.TotalCarbon >= NewExplorBotCarbonCost)
                 {
                     botHandler.NoExplorationBotsTotal++;
+                    SubtractFromResources(NewExplorBotIronCost, NewExplorBotGoldCost, NewExplorBotPlatCost, NewExplorBotCarbonCost);
                 }
                 else
                 {
@@ -101,5 +105,13 @@ public class EquipmentUpgradeHandler : MonoBehaviour {
     public void BuyingFailed()
     {
         Debug.Log("Failure");
+    }
+
+    public void SubtractFromResources(int iron, int gold, int platinum, int carbon)
+    {
+        resourceInfo.TotalIron -= iron;
+        resourceInfo.TotalGold -= gold;
+        resourceInfo.TotalPlatinum -= platinum;
+        resourceInfo.TotalCarbon -= carbon;
     }
 }
