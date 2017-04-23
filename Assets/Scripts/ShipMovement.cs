@@ -10,7 +10,7 @@ public class ShipMovement : MonoBehaviour {
     public float MaxRotationSpeed;
     public float ShipAltitude;
     ShipInformation shipInfo;
-    private float CostOfVelocty, CostOfRotation;
+    public float CostOfVelocty, CostOfRotation;
 
     void Start()
     {

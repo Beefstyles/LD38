@@ -1,24 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShipText
-{
-    Text ShipVelocity, ShipRotation, HeliumRem, HeliumMax;
-}
-
 public class ShipInformationText : MonoBehaviour {
-    
-    public ShipText shipText;
+   
+    public TextMeshPro ShipVelocity, ShipRotation, HeliumRem, HeliumMax;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    ShipMovement shipMovement;
+    ShipInformation shipInfo;
+
+    void Start()
+    {
+        shipMovement = FindObjectOfType<ShipMovement>();
+        shipInfo = FindObjectOfType<ShipInformation>();
+    }
+
+    void Update()
+    {
+        ShipVelocity.text = Math.Round(shipMovement.Speed,3).ToString();
+        ShipRotation.text = Math.Round(shipMovement.RotationSpeed,3).ToString();
+
+        HeliumRem.text = Math.Round(shipInfo.HeliumRemaining,0).ToString();
+        HeliumMax.text = Math.Round(shipInfo.HeliumMax,0).ToString();
+    }
 }
