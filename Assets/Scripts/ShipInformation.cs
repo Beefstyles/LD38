@@ -6,13 +6,16 @@ public class ShipInformation : MonoBehaviour {
 
     [HideInInspector]
     public string GridLocation;
-	// Use this for initialization
-	void Start () {
+    public float HeliumRemaining, HeliumMax;
+
+	void Start ()
+    {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+
+	void Update ()
+    {
 		
 	}
 
