@@ -10,6 +10,7 @@ public class Bot : MonoBehaviour {
     public BotStatus BotStatus;
     public float Timer;
     public float TimeToSurface, TimeForAction, TimeToReturn;
+    public string Location;
 
 	void Start () {
         Timer = 0;

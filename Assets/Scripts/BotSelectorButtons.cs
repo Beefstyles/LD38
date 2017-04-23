@@ -15,6 +15,9 @@ public class BotSelectorButtons : MonoBehaviour {
     BotHandler botHandler;
     ShipMovement shipMovement;
     private bool buttonOn;
+    private bool spawnSuccessful;
+    private float buttonOffTimer;
+    private float buttonOffTimerSet = 0.2F;
 
     void Start ()
     {
@@ -30,23 +33,67 @@ public class BotSelectorButtons : MonoBehaviour {
 	
 	void Update () {
 
-        if (ButtonPressed)
-            Debug.Log("Tggle");
-        ButtonPressed = false;
-        buttonOn = true;
-        gameObjMesh.material = ButtonOnMat;
-        switch (buttonAction)
+        if (IsToggle)
         {
-            case (ButtonAction.SelectBotType):
-                botSelector.bt = botType;
-                foreach (var btn in OtherButtons)
+            if (ButtonPressed)
+            {
+                ButtonPressed = false;
+                buttonOn = true;
+                gameObjMesh.material = ButtonOnMat;
+                switch (buttonAction)
                 {
-                    btn.GetComponent<StandardButton>().TurnButtonOff();
+                    case (ButtonAction.SelectBotType):
+                        botSelector.bt = botType;
+                        foreach (var btn in OtherButtons)
+                        {
+                            btn.GetComponent<BotSelectorButtons>().TurnButtonOff();
+                        }
+                        break;
+                    case (ButtonAction.SpawnBot):
+                        botHandler.SpawnBot(botType);
+
+                        break;
                 }
-                break;
-            case (ButtonAction.SpawnBot):
-                botHandler.SpawnBot(botType);
-                break;
+            }
+        }
+
+        else
+        {
+            if (ButtonPressed)
+            {
+                ButtonPressed = false;
+                buttonOn = true;
+                gameObjMesh.material = ButtonOnMat;
+                buttonOffTimer = buttonOffTimerSet;
+                switch (buttonAction)
+                {
+                    case (ButtonAction.SpawnBot):
+                        botHandler.SpawnBot(botType);
+                        spawnSuccessful = botHandler.SpawnSuccessful;
+                        break;
+                }
+            }
+            else
+            {
+                if (buttonOffTimer >= 0)
+                {
+                    buttonOffTimer -= Time.deltaTime;
+                }
+                if (buttonOffTimer <= 0)
+                {
+                    TurnButtonOff();
+                }
+            }
+        }
+    }
+
+    public void TurnButtonOff()
+    {
+        if (buttonOn)
+        {
+            buttonOn = false;
+            gameObjMesh.material = ButtonOffMat;
+            ButtonPressed = false;
         }
     }
 }

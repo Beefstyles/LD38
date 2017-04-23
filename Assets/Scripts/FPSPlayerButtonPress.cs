@@ -33,11 +33,6 @@ public class FPSPlayerButtonPress : MonoBehaviour {
                         sb.ButtonPressed = true;
                         //Cursor.sprite = CursorClickable;
                     }
-                    if(BotSelectorButton != null)
-                    {
-                        BotSelectorButton.ButtonPressed = true;
-                    }
-
                 }
                 if (Input.GetButton("Fire2"))
                 {
@@ -47,6 +42,10 @@ public class FPSPlayerButtonPress : MonoBehaviour {
                         sb.ButtonPressed = true;
                         //Cursor.sprite = CursorClickable;
                     }
+                }
+
+                if(Input.GetButtonDown("Fire1")|| Input.GetButtonDown("Fire2"))
+                {
                     if (BotSelectorButton != null)
                     {
                         BotSelectorButton.ButtonPressed = true;

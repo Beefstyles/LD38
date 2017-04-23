@@ -17,7 +17,8 @@ public class BotHandler : MonoBehaviour {
 
     public TextMeshPro NumberMiningBotsTotalText, NumberMiningBotsActiveText, NumberMiningBotsPickupReqText, NumberExplorationBotsTotalText, NumberExplorationBotsActiveText, NumberExplorationBotsPickupReqText;
     public TextMeshPro NumberArchBotsTotalText, NumberArchBotsActiveText, NumberArchBotsPickupReqText;
-
+    public TextMeshPro BotLine1;
+    private Bot currentBot;
     public int NoMiningBotsTotal;
     public int NoMiningBotsActive;
     public int NumberMiningBotsPickupReq;
@@ -29,6 +30,7 @@ public class BotHandler : MonoBehaviour {
     public int NumberArchBotsPickupReq;
     private GameObject instantiatedBot;
     public Transform BotSpawnLocation;
+    public bool SpawnSuccessful;
 
     public GameObject MiningBot, ExplorBot, ArchBot;
 
@@ -38,12 +40,21 @@ public class BotHandler : MonoBehaviour {
         switch (bt)
         {
             case (BotType.MiningBot):
-                if(NoMiningBotsTotal > 1)
+                if(NoMiningBotsTotal >= 1)
                 {
                     NoMiningBotsTotal--;
                     NoMiningBotsActive++;
                     instantiatedBot = Instantiate(MiningBot, BotSpawnLocation) as GameObject;
-                    instantiatedBot.GetComponent<Bot>().BotNumber = 1;
+                    currentBot = instantiatedBot.GetComponent<Bot>();
+                    currentBot.BotNumber = 1;
+                    SpawnSuccessful = true;
+                    BotLine1.text = currentBot.BotNumber + " " + currentBot.BotType + " " + currentBot.BotStatus
+                    Debug.Log("Successfully spawned a mining bot");
+                }
+                else
+                {
+                    Debug.Log("Failed spawned a mining bot");
+                    SpawnSuccessful = false;
                 }
                 break;
         }
@@ -68,4 +79,6 @@ public class BotHandler : MonoBehaviour {
         NumberArchBotsActiveText.text = NumberArchBotsActive.ToString();
         NumberArchBotsPickupReqText.text = NumberArchBotsPickupReq.ToString();
     }
+
+
 }
