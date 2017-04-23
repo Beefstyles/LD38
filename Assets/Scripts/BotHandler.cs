@@ -35,6 +35,7 @@ public class BotHandler : MonoBehaviour {
     public bool SpawnSuccessful;
     private int currentBotNumber = 1;
     MessageHandler messageHandler;
+    private string message;
 
     public GameObject MiningBot, ExplorBot, ArchBot;
 
@@ -88,27 +89,44 @@ public class BotHandler : MonoBehaviour {
         NumberArchBotsPickupReqText.text = NumberArchBotsPickupReq.ToString();
     }
 
-    public void BotReturned(BotType botType, Dictionary<string, int> MiningBotReturn, Dictionary<string, float> ExploreBotReturn, int NumberOfArtifact)
+    public void BotReturned(BotType botType, Dictionary<string, int> MiningBotReturn, Dictionary<string, float> ExploreBotReturn, int NumberOfArtifact, string botLocation)
     {
         switch (botType)
         {
             case BotType.MiningBot:
                 int miningReturn;
+                message = "Mining Bot Returned: ";
                 MiningBotReturn.TryGetValue("Iron", out miningReturn);
                 resourceInfo.TotalIron += miningReturn;
+                message += "Iron: " + miningReturn + " ";
                 MiningBotReturn.TryGetValue("Gold", out miningReturn);
                 resourceInfo.TotalGold += miningReturn;
+                message += "Gold: " + miningReturn + " ";
                 MiningBotReturn.TryGetValue("Platinum", out miningReturn);
                 resourceInfo.TotalPlatinum += miningReturn;
+                message += "Platinum: " + miningReturn + " ";
                 MiningBotReturn.TryGetValue("Carbon", out miningReturn);
                 resourceInfo.TotalCarbon += miningReturn;
+                message += "Carbon: " + miningReturn + " ";
                 MiningBotReturn.TryGetValue("Helium3", out miningReturn);
                 resourceInfo.HeliumRemaining += miningReturn;
-                messageHandler
+                message += "Helium3: " + miningReturn + " ";
+                messageHandler.ReceiveMessage(message);
                 break;
             case BotType.ArchBot:
                 break;
             case BotType.ExplorBot:
+                float explorerReturn;
+                ExploreBotReturn.TryGetValue("Iron", out explorerReturn);
+                message = "Explorer Bot Returned from " + botLocation + " :" + explorerReturn + "% chance Iron, ";
+                ExploreBotReturn.TryGetValue("Gold", out explorerReturn);
+                message += explorerReturn + "% chance Gold, ";
+                ExploreBotReturn.TryGetValue("Platinum", out explorerReturn);
+                message += explorerReturn + "% chance Platinum, ";
+                ExploreBotReturn.TryGetValue("Carbon", out explorerReturn);
+                message += explorerReturn + "% chance Carbon, ";
+                messageHandler.ReceiveMessage(message);
+                break;
                 break;
             default:
                 break;
