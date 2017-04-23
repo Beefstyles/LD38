@@ -49,10 +49,6 @@ public class BotSelectorButtons : MonoBehaviour {
                             btn.GetComponent<BotSelectorButtons>().TurnButtonOff();
                         }
                         break;
-                    case (ButtonAction.SpawnBot):
-                        botHandler.SpawnBot(botType);
-
-                        break;
                 }
             }
         }

@@ -17,8 +17,9 @@ public class BotHandler : MonoBehaviour {
 
     public TextMeshPro NumberMiningBotsTotalText, NumberMiningBotsActiveText, NumberMiningBotsPickupReqText, NumberExplorationBotsTotalText, NumberExplorationBotsActiveText, NumberExplorationBotsPickupReqText;
     public TextMeshPro NumberArchBotsTotalText, NumberArchBotsActiveText, NumberArchBotsPickupReqText;
-    public TextMeshPro BotLine1;
+    public TextMeshPro BotLine1, BotLine2, BotLine3, BotLine4, BotLine5, BotLine6;
     private Bot currentBot;
+    ShipInformation ShipInfo;
     public int NoMiningBotsTotal;
     public int NoMiningBotsActive;
     public int NumberMiningBotsPickupReq;
@@ -31,10 +32,15 @@ public class BotHandler : MonoBehaviour {
     private GameObject instantiatedBot;
     public Transform BotSpawnLocation;
     public bool SpawnSuccessful;
+    private int currentBotNumber = 1;
 
     public GameObject MiningBot, ExplorBot, ArchBot;
 
 
+    void Start()
+    {
+        ShipInfo = FindObjectOfType<ShipInformation>();
+    }
     public void SpawnBot(BotType bt)
     {
         switch (bt)
@@ -44,11 +50,12 @@ public class BotHandler : MonoBehaviour {
                 {
                     NoMiningBotsTotal--;
                     NoMiningBotsActive++;
-                    instantiatedBot = Instantiate(MiningBot, BotSpawnLocation) as GameObject;
+                    instantiatedBot = Instantiate(MiningBot,BotSpawnLocation) as GameObject;
                     currentBot = instantiatedBot.GetComponent<Bot>();
-                    currentBot.BotNumber = 1;
+                    currentBot.BotNumber = currentBotNumber;
+                    currentBotNumber++;
+                    currentBot.BotLocation = ShipInfo.GridLocation;
                     SpawnSuccessful = true;
-                    BotLine1.text = currentBot.BotNumber + " " + currentBot.BotType + " " + currentBot.BotStatus
                     Debug.Log("Successfully spawned a mining bot");
                 }
                 else
