@@ -86,5 +86,10 @@ public class BotHandler : MonoBehaviour {
         NumberArchBotsPickupReqText.text = NumberArchBotsPickupReq.ToString();
     }
 
+    public void BotReturned(BotType botType)
+    {
+
+    }
+
 
 }

@@ -10,17 +10,19 @@ public class ShipMovement : MonoBehaviour {
     public float MaxRotationSpeed;
     public float ShipAltitude;
     ShipInformation shipInfo;
+    ResourceInformation resourceInfo;
     public float CostOfVelocty, CostOfRotation;
 
     void Start()
     {
         ShipAltitude = transform.position.y;
+        resourceInfo = FindObjectOfType<ResourceInformation>();
         shipInfo = FindObjectOfType<ShipInformation>();
     }
 
     void Update()
     {
-        if (shipInfo.HeliumRemaining > 0)
+        if (resourceInfo.HeliumRemaining > 0)
         {
             transform.Translate(Vector3.forward * Speed);
             transform.Rotate(Vector3.up, RotationSpeed);
@@ -43,10 +45,10 @@ public class ShipMovement : MonoBehaviour {
         switch (actionType)
         {
             case ("MoveShip"):
-                shipInfo.HeliumRemaining -= CostOfVelocty * Speed;
+                resourceInfo.HeliumRemaining -= CostOfVelocty * Speed;
                 break;
             case ("RotateShip"):
-                shipInfo.HeliumRemaining -= CostOfRotation * RotationSpeed;
+                resourceInfo.HeliumRemaining -= CostOfRotation * RotationSpeed;
                 break;
         }
     }

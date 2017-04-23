@@ -16,9 +16,23 @@ public class Bot : MonoBehaviour {
     BotHandler botHandler;
     public float timeRemaining;
     ShipInformation shipInfo;
+    public Dictionary<string, int> MiningBotResourceReturn = new Dictionary<string, int>();
+    public Dictionary<string, float> ExploreBotResourceReturn = new Dictionary<string, float>();
     public int AmountOfIron, AmountOfGold, AmountOfPlatinum, AmountOfCarbon, AmountOfHelium, NumberOfArtifact;
 
 	void Start () {
+        MiningBotResourceReturn.Add("Iron", 0);
+        MiningBotResourceReturn.Add("Gold", 0);
+        MiningBotResourceReturn.Add("Platinum", 0);
+        MiningBotResourceReturn.Add("Carbon", 0);
+        MiningBotResourceReturn.Add("Helium3", 0);
+
+        ExploreBotResourceReturn.Add("Iron", 0F);
+        ExploreBotResourceReturn.Add("Gold", 0F);
+        ExploreBotResourceReturn.Add("Platinum", 0F);
+        ExploreBotResourceReturn.Add("Carbon", 0F);
+        ExploreBotResourceReturn.Add("Helium3", 0F);
+
         Timer = 0;
         botHandler = FindObjectOfType<BotHandler>();
         shipInfo = FindObjectOfType<ShipInformation>();

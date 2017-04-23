@@ -7,7 +7,7 @@ public class MessageHandler : MonoBehaviour {
 
     public TextMeshPro Message1, Message2, Message3, Message4, Message5, Message6, Message7, Message8, Message9;
 
-    public int CurrentMessageNumber;
+    public int CurrentMessageNumber = 1;
 
 	public void ReceiveMessage(string message)
     {
@@ -38,8 +38,10 @@ public class MessageHandler : MonoBehaviour {
                 Message8.text = CurrentMessageNumber + ": " + message;
                 break;
             case (9):
+                CurrentMessageNumber = 0;
                 Message9.text = CurrentMessageNumber + ": " + message;
                 break;
         }
+        CurrentMessageNumber++;
     }
 }
