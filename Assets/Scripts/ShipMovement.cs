@@ -9,22 +9,45 @@ public class ShipMovement : MonoBehaviour {
     public float RotationSpeed;
     public float MaxRotationSpeed;
     public float ShipAltitude;
+    ShipInformation shipInfo;
+    private float CostOfVelocty, CostOfRotation;
 
-    
-
-	void Start()
+    void Start()
     {
         ShipAltitude = transform.position.y;
+        shipInfo = FindObjectOfType<ShipInformation>();
     }
 
-	void Update ()
+    void Update()
     {
-        transform.Translate(Vector3.forward * Speed);
-        transform.Rotate(Vector3.up, RotationSpeed);
-	}
+        if (shipInfo.HeliumRemaining > 0)
+        {
+            transform.Translate(Vector3.forward * Speed);
+            transform.Rotate(Vector3.up, RotationSpeed);
+        }
+        else
+        {
+            Speed = 0;
+            RotationSpeed = 0;
+        }
+
+    }
 
     public void TransportShip(Vector3 TransportLocation)
     {
         transform.position = TransportLocation;
+    }
+
+    public void ReduceHeliumSupply(string actionType)
+    {
+        switch (actionType)
+        {
+            case ("MoveShip"):
+                shipInfo.HeliumRemaining -= CostOfVelocty * Speed;
+                break;
+            case ("RotateShip"):
+                shipInfo.HeliumRemaining -= CostOfRotation * RotationSpeed;
+                break;
+        }
     }
 }

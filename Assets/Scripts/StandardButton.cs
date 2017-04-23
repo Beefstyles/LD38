@@ -128,6 +128,7 @@ public class StandardButton : MonoBehaviour {
                     {
                         shipMovement.Speed -= speedChangeIncrement;
                     }
+                    shipMovement.ReduceHeliumSupply("MoveShip");
                 }
             }
             else
@@ -166,6 +167,7 @@ public class StandardButton : MonoBehaviour {
                     {
                         shipMovement.RotationSpeed -= rotationChangeIncrement;
                     }
+                    shipMovement.ReduceHeliumSupply("RotateShip");
                 }
             }
             else
