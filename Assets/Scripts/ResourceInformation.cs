@@ -8,6 +8,7 @@ public class ResourceInformation : MonoBehaviour {
     public int TotalIron, TotalGold, TotalPlatinum, TotalCarbon, NumberArtifacts;
     public float HeliumRemaining, HeliumMax;
     public TextMeshPro IronText, GoldText, PlatinumText, CarbonText, HeliumText, ArtifactText;
+    public Dictionary<string, Dictionary<string, float>> GridRefChanceOfReturn = new Dictionary<string, Dictionary<string, float>>();
     
     void Update()
     {

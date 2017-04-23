@@ -19,6 +19,9 @@ public class Bot : MonoBehaviour {
     public Dictionary<string, int> MiningBotResourceReturn = new Dictionary<string, int>();
     public Dictionary<string, float> ExploreBotResourceReturn = new Dictionary<string, float>();
     public int NumberOfArtifact;
+    ResourceInformation resourceInfo;
+    int randomNumber;
+    public int IronReturn, GoldReturn, PlatinumReturn, CarbonReturn, HeliumReturn;
 
 	void Start () {
         MiningBotResourceReturn.Add("Iron", 0);
@@ -33,15 +36,12 @@ public class Bot : MonoBehaviour {
         ExploreBotResourceReturn.Add("Carbon", 0F);
         ExploreBotResourceReturn.Add("Helium3", 0F);
 
+        resourceInfo = FindObjectOfType<ResourceInformation>();
         Timer = 0;
         botHandler = FindObjectOfType<BotHandler>();
         shipInfo = FindObjectOfType<ShipInformation>();
         BotStatus = BotStatus.TravellingToSurface;
         timeRemaining = TimeToSurface - Timer;
-        if(BotLocation == shipInfo.GridLocation)
-        {
-            Debug.Log("Test?");
-        }
     }
 	
 
@@ -109,9 +109,73 @@ public class Bot : MonoBehaviour {
                 if(BotLocation == shipInfo.GridLocation)
                 {
                     BotStatus = BotStatus.ReturnedToShip;
+                    ExploreBotResourceReturn = resourceInfo.GridRefChanceOfReturn["BotLocation"];
+                    switch (BotType)
+                    {
+                        case BotType.MiningBot:
+                            randomNumber = returnRandomNumber();
+
+                            if(randomNumber <= (ExploreBotResourceReturn["Iron"] / 10))
+                            {
+                                MiningBotResourceReturn["Iron"] = IronReturn;
+                            }
+                            else
+                            {
+                                MiningBotResourceReturn["Iron"] = 0;
+                            }
+                            randomNumber = returnRandomNumber();
+                            if (randomNumber <= (ExploreBotResourceReturn["Gold"] / 10))
+                            {
+                                MiningBotResourceReturn["Gold"] = GoldReturn;
+                            }
+                            else
+                            {
+                                MiningBotResourceReturn["Gold"] = 0;
+                            }
+                            randomNumber = returnRandomNumber();
+                            if (randomNumber <= (ExploreBotResourceReturn["Platinum"] / 10))
+                            {
+                                MiningBotResourceReturn["Platinum"] = PlatinumReturn;
+                            }
+                            else
+                            {
+                                MiningBotResourceReturn["Platinum"] = 0;
+                            }
+                            randomNumber = returnRandomNumber();
+                            if (randomNumber <= (ExploreBotResourceReturn["Carbon"] / 10))
+                            {
+                                MiningBotResourceReturn["Carbon"] = CarbonReturn;
+                            }
+                            else
+                            {
+                                MiningBotResourceReturn["Carbon"] = 0;
+                            }
+                            randomNumber = returnRandomNumber();
+                            if (randomNumber <= (ExploreBotResourceReturn["Helium3"] / 10))
+                            {
+                                MiningBotResourceReturn["Helium3"] = HeliumReturn;
+                            }
+                            else
+                            {
+                                MiningBotResourceReturn["Helium3"] = 0;
+                            }
+                            break;
+                        case BotType.ArchBot:
+                            break;
+                        case BotType.ExplorBot:
+                            break;
+                        default:
+                            break;
+                    }
                     botHandler.BotReturned(BotType, MiningBotResourceReturn, ExploreBotResourceReturn, NumberOfArtifact, BotLocation);
                 }
                 break;
         }
+    }
+
+    private int returnRandomNumber()
+    {
+        int rand = UnityEngine.Random.Range(1, 10);
+        return rand;
     }
 }
