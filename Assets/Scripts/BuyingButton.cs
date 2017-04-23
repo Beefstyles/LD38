@@ -17,12 +17,13 @@ public class BuyingButton : MonoBehaviour {
     private float buttonOffTimer;
     private float buttonOffTimerSet = 0.2F;
     public BotSelectorButtons SpawnBotButton;
+    EquipmentUpgradeHandler equipUpgradeHandler;
 
     void Start()
     {
 
         gameObjMesh = GetComponent<MeshRenderer>();
-
+        equipUpgradeHandler = FindObjectOfType<EquipmentUpgradeHandler>();
         gameObjMesh.material = ButtonOffMat;
         buttonOn = false;
         ButtonPressed = false;
@@ -36,19 +37,7 @@ public class BuyingButton : MonoBehaviour {
                 buttonOn = true;
                 gameObjMesh.material = ButtonOnMat;
                 buttonOffTimer = buttonOffTimerSet;
-            switch (buyingOption)
-            {
-                case BuyingOptions.H3Unit:
-                    break;
-                case BuyingOptions.NewMiningBot:
-                    break;
-                case BuyingOptions.NewArchBot:
-                    break;
-                case BuyingOptions.NewExplorBot:
-                    break;
-                default:
-                    break;
-            }
+                equipUpgradeHandler.ReceiveBuyingButton(buyingOption);
             }
             else
             {
