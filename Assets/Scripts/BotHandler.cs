@@ -42,6 +42,7 @@ public class BotHandler : MonoBehaviour {
     void Start()
     {
         ShipInfo = FindObjectOfType<ShipInformation>();
+        messageHandler = FindObjectOfType<MessageHandler>();
     }
     public void SpawnBot(BotType bt)
     {
@@ -133,7 +134,7 @@ public class BotHandler : MonoBehaviour {
         {
             case BotType.MiningBot:
                 int miningReturn;
-                message = "Mining Bot Returned from : " + botLocation + " with:";
+                message = "Mining Bot Returned from : " + botLocation + " with: ";
                 MiningBotReturn.TryGetValue("Iron", out miningReturn);
                 resourceInfo.TotalIron += miningReturn;
                 message += "Iron: " + miningReturn + " ";
@@ -156,7 +157,7 @@ public class BotHandler : MonoBehaviour {
             case BotType.ExplorBot:
                 float explorerReturn;
                 ExploreBotReturn.TryGetValue("Iron", out explorerReturn);
-                message = "Explorer Bot Returned from " + botLocation + " with:" + explorerReturn + "% chance Iron, ";
+                message = "Explorer Bot Returned from " + botLocation + " with: " + explorerReturn + "% chance Iron, ";
                 ExploreBotReturn.TryGetValue("Gold", out explorerReturn);
                 message += explorerReturn + "% chance Gold, ";
                 ExploreBotReturn.TryGetValue("Platinum", out explorerReturn);
@@ -164,7 +165,9 @@ public class BotHandler : MonoBehaviour {
                 ExploreBotReturn.TryGetValue("Carbon", out explorerReturn);
                 message += explorerReturn + "% chance Carbon, ";
                 ExploreBotReturn.TryGetValue("Helium3", out explorerReturn);
-                message += explorerReturn + "% chance Helium3";
+                message += explorerReturn + "% chance Helium3 and ";
+                ExploreBotReturn.TryGetValue("Artifact", out explorerReturn);
+                message += explorerReturn + "% chance Artifact";
                 messageHandler.ReceiveMessage(message);
                 break;
             default:

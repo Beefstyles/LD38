@@ -35,6 +35,7 @@ public class Bot : MonoBehaviour {
         ExploreBotResourceReturn.Add("Platinum", 0F);
         ExploreBotResourceReturn.Add("Carbon", 0F);
         ExploreBotResourceReturn.Add("Helium3", 0F);
+        ExploreBotResourceReturn.Add("Artifact", 0F);
 
         resourceInfo = FindObjectOfType<ResourceInformation>();
         Timer = 0;
