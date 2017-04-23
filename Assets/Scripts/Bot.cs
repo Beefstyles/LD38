@@ -18,7 +18,7 @@ public class Bot : MonoBehaviour {
     ShipInformation shipInfo;
     public Dictionary<string, int> MiningBotResourceReturn = new Dictionary<string, int>();
     public Dictionary<string, float> ExploreBotResourceReturn = new Dictionary<string, float>();
-    public int AmountOfIron, AmountOfGold, AmountOfPlatinum, AmountOfCarbon, AmountOfHelium, NumberOfArtifact;
+    public int NumberOfArtifact;
 
 	void Start () {
         MiningBotResourceReturn.Add("Iron", 0);
@@ -109,7 +109,7 @@ public class Bot : MonoBehaviour {
                 if(BotLocation == shipInfo.GridLocation)
                 {
                     BotStatus = BotStatus.ReturnedToShip;
-
+                    botHandler.BotReturned(BotType, MiningBotResourceReturn, ExploreBotResourceReturn, NumberOfArtifact);
                 }
                 break;
         }

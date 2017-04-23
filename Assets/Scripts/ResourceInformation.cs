@@ -1,20 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ResourceInformation : MonoBehaviour {
 
     public int TotalIron, TotalGold, TotalPlatinum, TotalCarbon, NumberArtifacts;
     public float HeliumRemaining, HeliumMax;
-
-
-    // Use this for initialization
+    public TextMeshPro IronText, GoldText, PlatinumText, CarbonText, HeliumText;
+    
+    
     void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void ReceiveDictionaries()
+    {
+
+    }
 }

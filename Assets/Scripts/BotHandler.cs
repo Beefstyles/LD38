@@ -31,6 +31,7 @@ public class BotHandler : MonoBehaviour {
     public int NumberArchBotsPickupReq;
     private GameObject instantiatedBot;
     public Transform BotSpawnLocation;
+    ResourceInformation resourceInfo;
     public bool SpawnSuccessful;
     private int currentBotNumber = 1;
 
@@ -86,10 +87,22 @@ public class BotHandler : MonoBehaviour {
         NumberArchBotsPickupReqText.text = NumberArchBotsPickupReq.ToString();
     }
 
-    public void BotReturned(BotType botType)
+    public void BotReturned(BotType botType, Dictionary<string, int> MiningBotReturn, Dictionary<string, float> ExploreBotReturn, int NumberOfArtifact)
     {
-
+        switch (botType)
+        {
+            case BotType.MiningBot:
+                
+                break;
+            case BotType.ArchBot:
+                break;
+            case BotType.ExplorBot:
+                break;
+            default:
+                break;
+        }
     }
+
 
 
 }

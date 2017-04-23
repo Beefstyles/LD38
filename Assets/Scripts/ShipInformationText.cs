@@ -11,11 +11,13 @@ public class ShipInformationText : MonoBehaviour {
 
     ShipMovement shipMovement;
     ShipInformation shipInfo;
+    ResourceInformation resourceInfo;
 
     void Start()
     {
         shipMovement = FindObjectOfType<ShipMovement>();
         shipInfo = FindObjectOfType<ShipInformation>();
+        resourceInfo = FindObjectOfType<ResourceInformation>();
     }
 
     void Update()
@@ -23,7 +25,7 @@ public class ShipInformationText : MonoBehaviour {
         ShipVelocity.text = Math.Round(shipMovement.Speed,3).ToString();
         ShipRotation.text = Math.Round(shipMovement.RotationSpeed,3).ToString();
 
-        HeliumRem.text = Math.Round(shipInfo.HeliumRemaining,0).ToString();
-        HeliumMax.text = Math.Round(shipInfo.HeliumMax,0).ToString();
+        HeliumRem.text = Math.Round(resourceInfo.HeliumRemaining,0).ToString();
+        HeliumMax.text = Math.Round(resourceInfo.HeliumMax,0).ToString();
     }
 }
