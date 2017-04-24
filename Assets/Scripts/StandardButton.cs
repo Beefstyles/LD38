@@ -72,7 +72,6 @@ public class StandardButton : MonoBehaviour {
                         ChangeRotation(false);
                         break; 
                 }
-
             }
             else
             {
@@ -86,8 +85,6 @@ public class StandardButton : MonoBehaviour {
                 }
             }
         }
-        
-
 	}
 
 

@@ -11,7 +11,6 @@ public class TeleportShip : MonoBehaviour {
     void Start()
     {
         shipMovement = FindObjectOfType<ShipMovement>();
-        
     }
 	void OnTriggerEnter(Collider coll)
     {

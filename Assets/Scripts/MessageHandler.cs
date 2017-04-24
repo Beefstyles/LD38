@@ -6,9 +6,14 @@ using TMPro;
 public class MessageHandler : MonoBehaviour {
 
     public TextMeshPro Message1, Message2, Message3, Message4, Message5, Message6, Message7, Message8;
+    private AudioSource MessageReceived;
 
     public int CurrentMessageNumber = 1;
 
+    void Start()
+    {
+        MessageReceived = GetComponent<AudioSource>();
+    }
 	public void ReceiveMessage(string message)
     {
         switch (CurrentMessageNumber)
@@ -39,6 +44,7 @@ public class MessageHandler : MonoBehaviour {
                 Message8.text = CurrentMessageNumber + ": " + message;
                 break;
         }
+        MessageReceived.Play();
         CurrentMessageNumber++;
     }
 }

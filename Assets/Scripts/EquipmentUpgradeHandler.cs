@@ -104,6 +104,7 @@ public class EquipmentUpgradeHandler : MonoBehaviour {
 
     public void BuyingFailed()
     {
+
         Debug.Log("Failure");
     }
 

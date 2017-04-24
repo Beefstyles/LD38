@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class ResourceInformation : MonoBehaviour {
 
@@ -17,7 +18,7 @@ public class ResourceInformation : MonoBehaviour {
         GoldText.text = TotalGold.ToString();
         PlatinumText.text = TotalPlatinum.ToString();
         CarbonText.text = TotalCarbon.ToString();
-        HeliumText.text = HeliumRemaining.ToString();
+        HeliumText.text = Math.Round(HeliumRemaining,0).ToString();
         ArtifactText.text = NumberArtifacts.ToString();
     }
 

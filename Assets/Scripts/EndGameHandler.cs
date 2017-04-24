@@ -3,13 +3,25 @@ using UnityEngine.SceneManagement;
 
 public class EndGameHandler : MonoBehaviour {
 
-	public void ExitGame()
+	private void ExitGame()
     {
         Application.Quit();
     }
 
-    public void RestartGame()
+    private void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            ExitGame();
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            RestartGame();
+        }
     }
 }

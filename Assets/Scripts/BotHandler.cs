@@ -38,6 +38,7 @@ public class BotHandler : MonoBehaviour {
     private string message;
     ArtifactHandler artifactHandler;
     private int MaxBots = 12;
+    private AudioSource BotSpawnNoise;
 
     public GameObject MiningBot, ExplorBot, ArchBot;
 
@@ -47,6 +48,7 @@ public class BotHandler : MonoBehaviour {
         messageHandler = FindObjectOfType<MessageHandler>();
         resourceInfo = FindObjectOfType<ResourceInformation>();
         artifactHandler = FindObjectOfType<ArtifactHandler>();
+        BotSpawnNoise = GetComponent<AudioSource>();
     }
     public void SpawnBot(BotType bt)
     {
@@ -65,6 +67,7 @@ public class BotHandler : MonoBehaviour {
                         currentBotNumber++;
                         currentBot.BotLocation = ShipInfo.GridLocation;
                         SpawnSuccessful = true;
+                        BotSpawnNoise.Play();
                         Debug.Log("Successfully spawned a mining bot");
                     }
                     else
@@ -84,6 +87,7 @@ public class BotHandler : MonoBehaviour {
                         currentBotNumber++;
                         currentBot.BotLocation = ShipInfo.GridLocation;
                         SpawnSuccessful = true;
+                        BotSpawnNoise.Play();
                         Debug.Log("Successfully spawned a arch bot");
                     }
                     else
@@ -103,6 +107,7 @@ public class BotHandler : MonoBehaviour {
                         currentBotNumber++;
                         currentBot.BotLocation = ShipInfo.GridLocation;
                         SpawnSuccessful = true;
+                        BotSpawnNoise.Play();
                         Debug.Log("Successfully spawned a explorer bot");
                     }
                     else

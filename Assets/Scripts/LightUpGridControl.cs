@@ -18,11 +18,6 @@ public class LightUpGridControl : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public void UpdateGridPosition(string currentGridPosition, bool TurnOn)
     {
         LightUpGridItem lgi;
