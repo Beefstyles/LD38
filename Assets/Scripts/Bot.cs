@@ -23,6 +23,7 @@ public class Bot : MonoBehaviour {
     int randomNumber;
     public int IronReturn, GoldReturn, PlatinumReturn, CarbonReturn, HeliumReturn, ArtifactReturn;
 
+
 	void Start () {
         MiningBotResourceReturn.Add("Iron", 0);
         MiningBotResourceReturn.Add("Gold", 0);
@@ -43,6 +44,8 @@ public class Bot : MonoBehaviour {
         shipInfo = FindObjectOfType<ShipInformation>();
         BotStatus = BotStatus.TravellingToSurface;
         timeRemaining = TimeToSurface - Timer;
+
+
     }
 	
 

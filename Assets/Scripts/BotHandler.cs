@@ -36,6 +36,7 @@ public class BotHandler : MonoBehaviour {
     private int currentBotNumber = 1;
     MessageHandler messageHandler;
     private string message;
+    ArtifactHandler artifactHandler;
 
     public GameObject MiningBot, ExplorBot, ArchBot;
 
@@ -44,6 +45,7 @@ public class BotHandler : MonoBehaviour {
         ShipInfo = FindObjectOfType<ShipInformation>();
         messageHandler = FindObjectOfType<MessageHandler>();
         resourceInfo = FindObjectOfType<ResourceInformation>();
+        artifactHandler = FindObjectOfType<ArtifactHandler>();
     }
     public void SpawnBot(BotType bt)
     {
@@ -158,6 +160,17 @@ public class BotHandler : MonoBehaviour {
             case BotType.ArchBot:
                 NoArchBotsTotal++;
                 NoArchBotsActive--;
+                if(NumberOfArtifact >= 1)
+                {
+                    if (artifactHandler.CheckArtifact(botLocation))
+                    {
+                        message = "Returned Artifact from " + botLocation + " sucessfully. Only " + (4 - resourceInfo.NumberArtifacts) + " to go";
+                    }
+                    else
+                    {
+                        message = "Already taken Artifact from " + botLocation + ". Find the others";
+                    }
+                }
                 break;
             case BotType.ExplorBot:
                 NoExplorationBotsTotal++;

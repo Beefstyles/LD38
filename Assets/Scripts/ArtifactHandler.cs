@@ -5,11 +5,12 @@ using UnityEngine;
 public class ArtifactHandler : MonoBehaviour {
 
     public bool Artifact1Found, Artifact2Found, Artifact3Found, Artifact4Found;
-    public 
+    ResourceInformation resourceInfo;
+
 	void Start ()
     {
-		
-	}
+        resourceInfo = FindObjectOfType<ResourceInformation>();
+    }
 	
     public bool CheckArtifact(string BotLocation)
     {
@@ -19,6 +20,7 @@ public class ArtifactHandler : MonoBehaviour {
                 if (!Artifact1Found)
                 {
                     Artifact1Found = true;
+                    resourceInfo.NumberArtifacts++;
                     return true;
                 }
                 else
@@ -30,6 +32,7 @@ public class ArtifactHandler : MonoBehaviour {
                 if (!Artifact2Found)
                 {
                     Artifact2Found = true;
+                    resourceInfo.NumberArtifacts++;
                     return true;
                 }
                 else
@@ -41,6 +44,7 @@ public class ArtifactHandler : MonoBehaviour {
                 if (!Artifact3Found)
                 {
                     Artifact3Found = true;
+                    resourceInfo.NumberArtifacts++;
                     return true;
                 }
                 else
@@ -52,6 +56,7 @@ public class ArtifactHandler : MonoBehaviour {
                 if (!Artifact4Found)
                 {
                     Artifact4Found = true;
+                    resourceInfo.NumberArtifacts++;
                     return true;
                 }
                 else

@@ -10,14 +10,14 @@ public class Artifact : MonoBehaviour {
 
     public GameObject ArtifactModel;
     private bool modelVisible;
-    ArtifactNumber artifactNumber;
+    public ArtifactNumber artifactNumber;
     ArtifactHandler artifactHandlder;
     
 	void Start ()
     {
         ArtifactModel.SetActive(false);
         modelVisible = false;
-        artifactHandlder = GetComponentInChildren<ArtifactHandler>();
+        artifactHandlder = GetComponentInParent<ArtifactHandler>();
     }
 	
 	// Update is called once per frame
@@ -30,7 +30,6 @@ public class Artifact : MonoBehaviour {
                 case ArtifactNumber.One:
                     if (artifactHandlder.Artifact1Found)
                     {
-
                         ArtifactModel.SetActive(true);
                         modelVisible = true;
                     }
@@ -39,13 +38,22 @@ public class Artifact : MonoBehaviour {
                     if (artifactHandlder.Artifact2Found)
                     {
                         ArtifactModel.SetActive(true);
+                        modelVisible = true;
                     }
                     break;
                 case ArtifactNumber.Three:
+                    if (artifactHandlder.Artifact3Found)
+                    {
+                        ArtifactModel.SetActive(true);
+                        modelVisible = true;
+                    }
                     break;
                 case ArtifactNumber.Four:
-                    break;
-                default:
+                    if (artifactHandlder.Artifact4Found)
+                    {
+                        ArtifactModel.SetActive(true);
+                        modelVisible = true;
+                    }
                     break;
             }
         }	
