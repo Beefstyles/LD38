@@ -17,6 +17,11 @@ public class ReturnShipLocation : MonoBehaviour {
         GridLocation = gameObject.name;
         lgControl = FindObjectOfType<LightUpGridControl>();
         shipInformation = FindObjectOfType<ShipInformation>();
+        ChanceOfIron = ReturnRandomInt() * 10;
+        ChanceOfGold = ReturnRandomInt() * 10;
+        ChanceOfPlatinum = ReturnRandomInt() * 10;
+        ChanceOfCarbon = ReturnRandomInt() * 10;
+        ChanceOfHelium3 = ReturnRandomInt() * 10;
         resourceDictChance.Add("Iron", ChanceOfIron);
         resourceDictChance.Add("Gold", ChanceOfGold);
         resourceDictChance.Add("Platinum", ChanceOfPlatinum);
@@ -44,6 +49,11 @@ public class ReturnShipLocation : MonoBehaviour {
             //Debug.Log("You have exited " + GridLocation);
             lgControl.UpdateGridPosition(GridLocation, false);
         }
+    }
+
+    int ReturnRandomInt()
+    {
+        return Random.Range(0, 10);
     }
 
 }
