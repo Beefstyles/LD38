@@ -182,6 +182,11 @@ public class BotHandler : MonoBehaviour {
                         message = "Already taken Artifact from " + botLocation + ". Find the others";
                     }
                 }
+                else
+                {
+                    message = "No artifact found";
+                }
+                messageHandler.ReceiveMessage(message);
                 break;
             case BotType.ExplorBot:
                 NoExplorationBotsTotal++;
