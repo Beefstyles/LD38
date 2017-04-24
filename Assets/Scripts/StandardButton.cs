@@ -162,7 +162,7 @@ public class StandardButton : MonoBehaviour {
             }
             else
             {
-                if (Mathf.Abs(shipMovement.RotationSpeed) < 0.005F)
+                if (Mathf.Abs(shipMovement.RotationSpeed) <= 0.01F)
                 {
                     shipMovement.RotationSpeed = 0F;
                 }
@@ -170,7 +170,7 @@ public class StandardButton : MonoBehaviour {
                 {
                     shipMovement.RotationSpeed -= rotationChangeStopIncrement;
                 }
-                else if (shipMovement.Speed < 0F)
+                else if (shipMovement.RotationSpeed < 0F)
                 {
                     shipMovement.RotationSpeed += rotationChangeStopIncrement;
                 }
