@@ -68,6 +68,7 @@ obj/
 *.user
 *.unityproj
 *.booproj
+*.zip
 
 # ============ #
 # OS generated #
