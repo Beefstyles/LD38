@@ -50,70 +50,70 @@ public class BotHandler : MonoBehaviour {
     }
     public void SpawnBot(BotType bt)
     {
-        if((NoMiningBotsTotal + NoExplorationBotsTotal + NoArchBotsTotal) <= MaxBots)
+        if((NoExplorationBotsActive + NoExplorationBotsActive + NoArchBotsActive) <= MaxBots)
         {
-
+            switch (bt)
+            {
+                case (BotType.MiningBot):
+                    if (NoMiningBotsTotal >= 1)
+                    {
+                        NoMiningBotsTotal--;
+                        NoMiningBotsActive++;
+                        instantiatedBot = Instantiate(MiningBot, transform.position, transform.rotation) as GameObject;
+                        currentBot = instantiatedBot.GetComponent<Bot>();
+                        currentBot.BotNumber = currentBotNumber;
+                        currentBotNumber++;
+                        currentBot.BotLocation = ShipInfo.GridLocation;
+                        SpawnSuccessful = true;
+                        Debug.Log("Successfully spawned a mining bot");
+                    }
+                    else
+                    {
+                        Debug.Log("Failed spawned a mining bot");
+                        SpawnSuccessful = false;
+                    }
+                    break;
+                case (BotType.ArchBot):
+                    if (NoArchBotsTotal >= 1)
+                    {
+                        NoArchBotsTotal--;
+                        NoArchBotsActive++;
+                        instantiatedBot = Instantiate(ArchBot, transform.position, transform.rotation) as GameObject;
+                        currentBot = instantiatedBot.GetComponent<Bot>();
+                        currentBot.BotNumber = currentBotNumber;
+                        currentBotNumber++;
+                        currentBot.BotLocation = ShipInfo.GridLocation;
+                        SpawnSuccessful = true;
+                        Debug.Log("Successfully spawned a arch bot");
+                    }
+                    else
+                    {
+                        Debug.Log("Failed spawned a arch bot");
+                        SpawnSuccessful = false;
+                    }
+                    break;
+                case (BotType.ExplorBot):
+                    if (NoExplorationBotsTotal >= 1)
+                    {
+                        NoExplorationBotsTotal--;
+                        NoExplorationBotsActive++;
+                        instantiatedBot = Instantiate(ExplorBot, transform.position, transform.rotation) as GameObject;
+                        currentBot = instantiatedBot.GetComponent<Bot>();
+                        currentBot.BotNumber = currentBotNumber;
+                        currentBotNumber++;
+                        currentBot.BotLocation = ShipInfo.GridLocation;
+                        SpawnSuccessful = true;
+                        Debug.Log("Successfully spawned a explorer bot");
+                    }
+                    else
+                    {
+                        Debug.Log("Failed spawned a explorer bot");
+                        SpawnSuccessful = false;
+                    }
+                    break;
+            }
         }
-        switch (bt)
-        {
-            case (BotType.MiningBot):
-                if(NoMiningBotsTotal >= 1)
-                {
-                    NoMiningBotsTotal--;
-                    NoMiningBotsActive++;
-                    instantiatedBot = Instantiate(MiningBot, transform.position, transform.rotation) as GameObject;
-                    currentBot = instantiatedBot.GetComponent<Bot>();
-                    currentBot.BotNumber = currentBotNumber;
-                    currentBotNumber++;
-                    currentBot.BotLocation = ShipInfo.GridLocation;
-                    SpawnSuccessful = true;
-                    Debug.Log("Successfully spawned a mining bot");
-                }
-                else
-                {
-                    Debug.Log("Failed spawned a mining bot");
-                    SpawnSuccessful = false;
-                }
-                break;
-            case (BotType.ArchBot):
-                if (NoArchBotsTotal >= 1)
-                {
-                    NoArchBotsTotal--;
-                    NoArchBotsActive++;
-                    instantiatedBot = Instantiate(ArchBot, transform.position, transform.rotation) as GameObject;
-                    currentBot = instantiatedBot.GetComponent<Bot>();
-                    currentBot.BotNumber = currentBotNumber;
-                    currentBotNumber++;
-                    currentBot.BotLocation = ShipInfo.GridLocation;
-                    SpawnSuccessful = true;
-                    Debug.Log("Successfully spawned a arch bot");
-                }
-                else
-                {
-                    Debug.Log("Failed spawned a arch bot");
-                    SpawnSuccessful = false;
-                }
-                break;
-            case (BotType.ExplorBot):
-                if (NoExplorationBotsTotal >= 1)
-                {
-                    NoExplorationBotsTotal--;
-                    NoExplorationBotsActive++;
-                    instantiatedBot = Instantiate(ExplorBot, transform.position, transform.rotation) as GameObject;
-                    currentBot = instantiatedBot.GetComponent<Bot>();
-                    currentBot.BotNumber = currentBotNumber;
-                    currentBotNumber++;
-                    currentBot.BotLocation = ShipInfo.GridLocation;
-                    SpawnSuccessful = true;
-                    Debug.Log("Successfully spawned a explorer bot");
-                }
-                else
-                {
-                    Debug.Log("Failed spawned a explorer bot");
-                    SpawnSuccessful = false;
-                }
-                break;
-        }
+        SpawnSuccessful = false;
     }
 
     void Update()
