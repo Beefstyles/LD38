@@ -26,6 +26,8 @@ public class StandardButton : MonoBehaviour {
     public GameObject[] OtherButtons;
     BotSelector botSelector;
     BotHandler botHandler;
+    private AudioSource ButtonSound;
+    private bool soundPlayed = false;
 
 
     void Start ()
@@ -34,6 +36,7 @@ public class StandardButton : MonoBehaviour {
         shipMovement = FindObjectOfType<ShipMovement>();
         botSelector = FindObjectOfType<BotSelector>();
         botHandler = FindObjectOfType<BotHandler>();
+        ButtonSound = GetComponent<AudioSource>();
         gameObjMesh.material = ButtonOffMat;
         buttonOn = false;
         ButtonPressed = false;
@@ -45,6 +48,11 @@ public class StandardButton : MonoBehaviour {
         {
             if (ButtonPressed)
             {
+                if (!ButtonSound.isPlaying)
+                {
+                    ButtonSound.Play();
+                }
+                soundPlayed = true;
                 ButtonPressed = false;
                 buttonOn = true;
                 gameObjMesh.material = ButtonOnMat;
@@ -90,6 +98,7 @@ public class StandardButton : MonoBehaviour {
             buttonOn = false;
             gameObjMesh.material = ButtonOffMat;
             ButtonPressed = false;
+            soundPlayed = false;
         }
     }
 

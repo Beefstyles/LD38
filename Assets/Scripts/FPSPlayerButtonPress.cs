@@ -33,7 +33,7 @@ public class FPSPlayerButtonPress : MonoBehaviour {
                     BotSelectorButton = hit.transform.GetComponent<BotSelectorButtons>();
                     BuyingOptionButton = hit.transform.gameObject.GetComponent<BuyingButton>();
                     endGameButton = hit.transform.gameObject.GetComponent<EndOfGameButtonHandler>();
-                    if (Input.GetButton("Fire1") || Input.GetButtonDown("Fire2"))
+                    if (Input.GetButton("Fire1") || Input.GetButton("Fire2"))
                     {
                         if (sb != null)
                         {
