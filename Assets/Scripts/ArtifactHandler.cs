@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArtifactHandler : MonoBehaviour {
 
     public bool Artifact1Found, Artifact2Found, Artifact3Found, Artifact4Found;
+    public bool AllArtifactsFound = false;
     ResourceInformation resourceInfo;
 
 	void Start ()
@@ -73,6 +74,12 @@ public class ArtifactHandler : MonoBehaviour {
 
 	void Update ()
     {
-		
+        if (!AllArtifactsFound)
+        {
+            if(Artifact1Found && Artifact2Found && Artifact3Found && Artifact4Found)
+            {
+                AllArtifactsFound = true;
+            }
+        }
 	}
 }

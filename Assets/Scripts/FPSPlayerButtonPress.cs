@@ -13,51 +13,62 @@ public class FPSPlayerButtonPress : MonoBehaviour {
     BuyingButton BuyingOptionButton;
     public Sprite CursorNonClickable, CursorClickable;
     public Image Cursor;
+    OverallGameHandler overallGameHandler;
+    EndOfGameButtonHandler endGameButton;
 
     void Start()
     {
         fpsCamera = GetComponentInChildren<Camera>();
+        overallGameHandler = FindObjectOfType<OverallGameHandler>();
     }
 	void Update ()
     {
-        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, 100F))
+        if (!overallGameHandler.GameOver)
         {
-            if (hit.transform.gameObject.tag == "Clickable")
+            if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, 100F))
             {
-                sb = hit.transform.gameObject.GetComponent<StandardButton>();
-                BotSelectorButton = hit.transform.GetComponent<BotSelectorButtons>();
-                BuyingOptionButton = hit.transform.gameObject.GetComponent<BuyingButton>();
-                if (Input.GetButton("Fire1"))
+                if (hit.transform.gameObject.tag == "Clickable")
                 {
-                    if(sb != null)
+                    sb = hit.transform.gameObject.GetComponent<StandardButton>();
+                    BotSelectorButton = hit.transform.GetComponent<BotSelectorButtons>();
+                    BuyingOptionButton = hit.transform.gameObject.GetComponent<BuyingButton>();
+                    if (Input.GetButton("Fire1"))
                     {
-                        sb.GoForward = true;
-                        sb.ButtonPressed = true;
-                        //Cursor.sprite = CursorClickable;
+                        if (sb != null)
+                        {
+                            sb.GoForward = true;
+                            sb.ButtonPressed = true;
+                            //Cursor.sprite = CursorClickable;
+                        }
                     }
-                }
-                if (Input.GetButton("Fire2"))
-                {
-                    if (sb != null)
+                    if (Input.GetButton("Fire2"))
                     {
-                        sb.GoForward = false;
-                        sb.ButtonPressed = true;
-                        //Cursor.sprite = CursorClickable;
+                        if (sb != null)
+                        {
+                            sb.GoForward = false;
+                            sb.ButtonPressed = true;
+                            //Cursor.sprite = CursorClickable;
+                        }
                     }
-                }
 
-                if(Input.GetButtonDown("Fire1")|| Input.GetButtonDown("Fire2"))
-                {
-                    if (BotSelectorButton != null)
+                    if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2"))
                     {
-                        BotSelectorButton.ButtonPressed = true;
-                    }
-                    if(BuyingOptionButton != null)
-                    {
-                        BuyingOptionButton.ButtonPressed = true;
+                        if (BotSelectorButton != null)
+                        {
+                            BotSelectorButton.ButtonPressed = true;
+                        }
+                        if (BuyingOptionButton != null)
+                        {
+                            BuyingOptionButton.ButtonPressed = true;
+                        }
+                        if(endGameButton != null)
+                        {
+                            endGameButton.ButtonPressed = true;
+                        }
                     }
                 }
             }
         }
+        
     }
 }
