@@ -26,6 +26,8 @@ public class ShipMovement : MonoBehaviour {
         {
             transform.Translate(Vector3.forward * Speed);
             transform.Rotate(Vector3.up, RotationSpeed);
+            resourceInfo.HeliumRemaining -= CostOfVelocty * Speed;
+            resourceInfo.HeliumRemaining -= CostOfRotation * RotationSpeed;
         }
         else
         {

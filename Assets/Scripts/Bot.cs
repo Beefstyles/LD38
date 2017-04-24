@@ -77,6 +77,25 @@ public class Bot : MonoBehaviour {
             case (6):
                 botHandler.BotLine6.text = statusText;
                 break;
+            case (7):
+                botHandler.BotLine7.text = statusText;
+                break;
+            case (8):
+                botHandler.BotLine8.text = statusText;
+                break;
+            case (9):
+                botHandler.BotLine9.text = statusText;
+                break;
+            case (10):
+                botHandler.BotLine10.text = statusText;
+                break;
+            case (11):
+                botHandler.BotLine11.text = statusText;
+                break;
+            case (12):
+                botHandler.BotLine12.text = statusText;
+                break;
+
         }
     }
 
@@ -197,13 +216,23 @@ public class Bot : MonoBehaviour {
                 switch (BotType)
                 {
                     case BotType.MiningBot:
-                        botHandler.NoMiningBotsPickupReq--;
+                        if(botHandler.NoMiningBotsPickupReq > 0)
+                        {
+                            botHandler.NoMiningBotsPickupReq--;
+                        }
+
                         break;
                     case BotType.ArchBot:
-                        botHandler.NoArchBotsPickupReq--;
+                        if (botHandler.NoArchBotsPickupReq > 0)
+                        {
+                            botHandler.NoArchBotsPickupReq--;
+                        }
                         break;
                     case BotType.ExplorBot:
-                        botHandler.NoExplorationBotsPickupReq--;
+                        if (botHandler.NoExplorationBotsPickupReq > 0)
+                        {
+                            botHandler.NoExplorationBotsPickupReq--;
+                        }
                         break;
                 }
                 break;

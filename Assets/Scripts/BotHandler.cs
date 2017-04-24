@@ -17,7 +17,7 @@ public class BotHandler : MonoBehaviour {
 
     public TextMeshPro NumberMiningBotsTotalText, NumberMiningBotsActiveText, NumberMiningBotsPickupReqText, NumberExplorationBotsTotalText, NumberExplorationBotsActiveText, NumberExplorationBotsPickupReqText;
     public TextMeshPro NumberArchBotsTotalText, NumberArchBotsActiveText, NumberArchBotsPickupReqText;
-    public TextMeshPro BotLine1, BotLine2, BotLine3, BotLine4, BotLine5, BotLine6;
+    public TextMeshPro BotLine1, BotLine2, BotLine3, BotLine4, BotLine5, BotLine6, BotLine7, BotLine8, BotLine9, BotLine10, BotLine11, BotLine12;
     private Bot currentBot;
     ShipInformation ShipInfo;
     public int NoMiningBotsTotal;
@@ -37,6 +37,7 @@ public class BotHandler : MonoBehaviour {
     MessageHandler messageHandler;
     private string message;
     ArtifactHandler artifactHandler;
+    private int MaxBots = 12;
 
     public GameObject MiningBot, ExplorBot, ArchBot;
 
@@ -49,6 +50,10 @@ public class BotHandler : MonoBehaviour {
     }
     public void SpawnBot(BotType bt)
     {
+        if((NoMiningBotsTotal + NoExplorationBotsTotal + NoArchBotsTotal) <= MaxBots)
+        {
+
+        }
         switch (bt)
         {
             case (BotType.MiningBot):
@@ -133,6 +138,7 @@ public class BotHandler : MonoBehaviour {
 
     public void BotReturned(BotType botType, Dictionary<string, int> MiningBotReturn, Dictionary<string, float> ExploreBotReturn, int NumberOfArtifact, string botLocation)
     {
+        currentBotNumber--;
         switch (botType)
         {
             case BotType.MiningBot:
