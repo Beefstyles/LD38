@@ -32,27 +32,18 @@ public class FPSPlayerButtonPress : MonoBehaviour {
                     sb = hit.transform.gameObject.GetComponent<StandardButton>();
                     BotSelectorButton = hit.transform.GetComponent<BotSelectorButtons>();
                     BuyingOptionButton = hit.transform.gameObject.GetComponent<BuyingButton>();
-                    if (Input.GetButton("Fire1"))
+                    endGameButton = hit.transform.gameObject.GetComponent<EndOfGameButtonHandler>();
+                    if (Input.GetButton("Fire1") || Input.GetButtonDown("Fire2"))
                     {
                         if (sb != null)
                         {
-                            sb.GoForward = true;
                             sb.ButtonPressed = true;
-                            //Cursor.sprite = CursorClickable;
                         }
                     }
-                    if (Input.GetButton("Fire2"))
-                    {
-                        if (sb != null)
-                        {
-                            sb.GoForward = false;
-                            sb.ButtonPressed = true;
-                            //Cursor.sprite = CursorClickable;
-                        }
-                    }
-
+                   
                     if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2"))
                     {
+
                         if (BotSelectorButton != null)
                         {
                             BotSelectorButton.ButtonPressed = true;

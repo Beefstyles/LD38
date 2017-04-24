@@ -27,6 +27,7 @@ public class EndOfGameButtonHandler : MonoBehaviour {
     {
             if (ButtonPressed)
             {
+            Debug.Log("Pressed");
                 ButtonPressed = false;
                 buttonOn = true;
                 gameObjMesh.material = ButtonOnMat;
