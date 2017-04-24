@@ -86,8 +86,7 @@ public class StandardButton : MonoBehaviour {
             }
         }
 	}
-
-
+    
     public void TurnButtonOff()
     {
         if (buttonOn)
