@@ -6,7 +6,7 @@ using TMPro;
 
 public enum BotType
 {
-    MiningBot, ArchBot, ExplorBot
+    MiningBot, ArchBot, ExplorBot, NoBot
 };
 
 public enum BotStatus
